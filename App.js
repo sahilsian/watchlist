@@ -10,10 +10,10 @@ import MyProvider from './context';
 import styled from 'styled-components'
 
 //Importing Pages
-import AddStockScreen from "./comps/AddStockScreen"
-import StockScreen from "./comps/StockScreen"
-import HomeScreen from "./comps/HomeScreen"
-import SearchScreen from "./comps/SearchScreen"
+import AddStockScreen from "./comps/Pages/AddStockScreen"
+import StockScreen from "./comps/Pages/StockScreen"
+import HomeScreen from "./comps/Pages/HomeScreen"
+import SearchScreen from "./comps/Pages/SearchScreen"
 
 //Creating default styled components
 const Screen = styled.view`
