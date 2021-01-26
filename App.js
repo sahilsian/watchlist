@@ -7,7 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 //Importing Context
 import MyProvider from './context';
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 //Importing Pages
 import AddStockScreen from "./comps/Pages/AddStockScreen"
@@ -16,9 +16,9 @@ import HomeScreen from "./comps/Pages/HomeScreen"
 import SearchScreen from "./comps/Pages/SearchScreen"
 
 //Creating default styled components
-const Screen = styled.view`
+const Screen = styled.View`
   flex: 1;
-  jjustify-content: center;
+  justify-content: center;
   align-items: center;
 `;
 
