@@ -3,8 +3,17 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+
+//Importing Context
 import MyProvider from './context';
+
 import styled from 'styled-components'
+
+//Importing Pages
+import AddStockScreen from "./comps/AddStockScreen"
+import StockScreen from "./comps/StockScreen"
+import HomeScreen from "./comps/HomeScreen"
+import SearchScreen from "./comps/SearchScreen"
 
 //Creating default styled components
 const Screen = styled.view`
@@ -14,38 +23,46 @@ const Screen = styled.view`
 `;
 
 //Creating homepage
-function HomeScreen() {
+function HomeScreenPage() {
   return (
     <Screen>
-      <Text>Home</Text>
+      <HomeScreen>
+        {/* Page contents go here */}
+      </HomeScreen>
     </Screen>
   );
 }
 
 //Creating stock screen
-function StockScreen() {
+function StockScreenPage() {
   return (
     <Screen>
-      <Text>Stock</Text>
+      <StockScreen>
+        {/* Page contents go here */}
+      </StockScreen>
     </Screen>
   );
 }
 
 //Creating search screen
-function SearchScreen() {
+function SearchScreenPage() {
   return (
     <Screen>
-      <Text></Text>
+      <SearchScreen>
+        {/* Page contents go here */}
+      </SearchScreen>
     </Screen>
   );
 }
 
 //Creating page to add stocks
 //Affiliated with search screen
-function AddStockScreen() {
+function AddStockScreenPage() {
   return (
     <Screen>
-      <Text>Home</Text>
+      <AddStockScreen>
+        {/* Page contents go here */}
+      </AddStockScreen>
     </Screen>
   );
 }
@@ -63,7 +80,28 @@ export default function App() {
           {/* Homepage Stack Screen */}
           <Stack.Screen 
           name="Home" 
-          component={HomeScreen}
+          component={HomeScreenPage}
+          options={{ title: 'Overview' }}
+          />
+
+          {/* Stock Stack Screen */}
+          <Stack.Screen 
+          name="Stock" 
+          component={StockScreenPage}
+          options={{ title: 'Overview' }}
+          />
+
+          {/* Search Stock Stack Screen */}
+          <Stack.Screen 
+          name="Search" 
+          component={SearchScreenPage}
+          options={{ title: 'Overview' }}
+          />
+
+          {/* Add Stock Stack Screen */}
+          <Stack.Screen 
+          name="Add" 
+          component={AddStockScreenPage}
           options={{ title: 'Overview' }}
           />
 
