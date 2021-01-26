@@ -26,7 +26,7 @@ function HomeScreen() {
 function StockScreen() {
   return (
     <Screen>
-      <Text>Home</Text>
+      <Text>Stock</Text>
     </Screen>
   );
 }
@@ -35,7 +35,7 @@ function StockScreen() {
 function SearchScreen() {
   return (
     <Screen>
-      <Text>Home</Text>
+      <Text></Text>
     </Screen>
   );
 }
@@ -60,14 +60,13 @@ export default function App() {
     
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
+          {/* Homepage Stack Screen */}
           <Stack.Screen 
           name="Home" 
           component={HomeScreen}
           options={{ title: 'Overview' }}
           />
-          <Stack.Screen 
-          name="Details" 
-          component={DetailsScreen} />
+
         </Stack.Navigator>
       </NavigationContainer>
 
