@@ -81,28 +81,28 @@ export default function App() {
           <Stack.Screen 
           name="Home" 
           component={HomeScreenPage}
-          options={{ title: 'Overview' }}
+          options={{ title: 'Home' }}
           />
 
           {/* Stock Stack Screen */}
           <Stack.Screen 
           name="Stock" 
           component={StockScreenPage}
-          options={{ title: 'Overview' }}
+          options={{ title: 'Stock Page' }}
           />
 
           {/* Search Stock Stack Screen */}
           <Stack.Screen 
           name="Search" 
           component={SearchScreenPage}
-          options={{ title: 'Overview' }}
+          options={{ title: 'Search Page' }}
           />
 
           {/* Add Stock Stack Screen */}
           <Stack.Screen 
           name="Add" 
           component={AddStockScreenPage}
-          options={{ title: 'Overview' }}
+          options={{ title: 'Add Page' }}
           />
 
         </Stack.Navigator>
