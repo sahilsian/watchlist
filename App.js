@@ -7,7 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 //Importing Context
 import MyProvider from './context';
 
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 
 //Importing Pages
 import AddStockScreen from "./comps/Pages/AddStockScreen"
@@ -16,9 +16,9 @@ import HomeScreen from "./comps/Pages/HomeScreen"
 import SearchScreen from "./comps/Pages/SearchScreen"
 
 //Creating default styled components
-const Screen = styled.view`
+const Screen = styled.View`
   flex: 1;
-  jjustify-content: center;
+  justify-content: center;
   align-items: center;
 `;
 
@@ -81,28 +81,28 @@ export default function App() {
           <Stack.Screen 
           name="Home" 
           component={HomeScreenPage}
-          options={{ title: 'Overview' }}
+          options={{ title: 'Home' }}
           />
 
           {/* Stock Stack Screen */}
           <Stack.Screen 
           name="Stock" 
           component={StockScreenPage}
-          options={{ title: 'Overview' }}
+          options={{ title: 'Stock Page' }}
           />
 
           {/* Search Stock Stack Screen */}
           <Stack.Screen 
           name="Search" 
           component={SearchScreenPage}
-          options={{ title: 'Overview' }}
+          options={{ title: 'Search Page' }}
           />
 
           {/* Add Stock Stack Screen */}
           <Stack.Screen 
           name="Add" 
           component={AddStockScreenPage}
-          options={{ title: 'Overview' }}
+          options={{ title: 'Add Page' }}
           />
 
         </Stack.Navigator>
