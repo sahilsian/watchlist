@@ -22,12 +22,13 @@ const FullWidth = styled.View`
 
 const HomeScreen = ({}) => {
 
+
     const [res, setRes] = useState([])
     const [rounded, setRounded] = useState([])
 
     const data = {
         datasets: [{
-          data: [1, 2, 3 ,4 ,7]
+          data: res.length > 1 ? res : [1, 1, 1, 1]
         }]
     }
 
@@ -44,18 +45,28 @@ const HomeScreen = ({}) => {
     useEffect(()=> {
 
         //Running request on load of the page
-        axios.request(options).then((response) => {
-            const result = [response.data.chart.result[0].indicators.quote[0].close]
+        axios.request(options)
+        .then((response) => {
+            const result = response.data.chart.result[0].indicators.quote[0].open
 
-            let divideInto = 10;
+            let divideInto = 5;
             let means = new Array(Math.ceil(result.length / divideInto)).fill().map(() => {
                 let nums = result.splice(0, divideInto)
-                nums.reduce((x, y) => x + y) / nums.length
+                return nums.reduce((    x, y) => x + y) / nums.length;
             });
 
-            setRes(means)
-            console.log(means)
+            let arr = means.map(a => a.toFixed(2));
+            let myArray = arr.filter((i)=> i != null && i != 0.00)
 
+            let average = myArray.reduce((a, b) => parseInt(a) + parseInt(b), 0)
+            
+            let fullaverage = average / myArray.length
+
+            let mainArr = myArray.filter((i) => i > fullaverage - 150)
+
+            setRes(mainArr)
+
+            console.log(res)           
 
             
         }).catch( (error) => {
