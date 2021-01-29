@@ -15,6 +15,10 @@ import StockScreen from "./comps/Pages/StockScreen"
 import HomeScreen from "./comps/Pages/HomeScreen"
 import SearchScreen from "./comps/Pages/SearchScreen"
 
+// Importing customer header bar component
+import Header from './comps/Header'
+
+
 //Creating default styled components
 const Screen = styled.View`
   flex: 1;
@@ -68,6 +72,7 @@ function AddStockScreenPage() {
 }
 
 
+
 //Creating stack navigation for routing
 const Stack = createStackNavigator();
 
@@ -76,33 +81,40 @@ export default function App() {
     <MyProvider>
     
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Home">
+        <Stack.Navigator 
+        initialRouteName="Home"
+        screenOptions={{
+          headerStyle: {
+            borderBottomWidth: 0,
+          }
+        }}
+        >
           {/* Homepage Stack Screen */}
           <Stack.Screen 
           name="Home" 
           component={HomeScreenPage}
-          options={{ title: 'Home' }}
+          options={{ headerTitle: props => <Header Title="Watchlist" /> }}
           />
 
           {/* Stock Stack Screen */}
           <Stack.Screen 
           name="Stock" 
           component={StockScreenPage}
-          options={{ title: 'Stock Page' }}
+          options={{ headerTitle: props => <Header Title="Watchlist" Back="True" /> }}
           />
 
           {/* Search Stock Stack Screen */}
           <Stack.Screen 
           name="Search" 
           component={SearchScreenPage}
-          options={{ title: 'Search Page' }}
+          options={{ headerTitle: props => <Header Title="Watchlist" Back="True" /> }}
           />
 
           {/* Add Stock Stack Screen */}
           <Stack.Screen 
           name="Add" 
           component={AddStockScreenPage}
-          options={{ title: 'Add Page' }}
+          options={{ headerTitle: props => <Header Title="Watchlist" Back="True" /> }}
           />
 
         </Stack.Navigator>
