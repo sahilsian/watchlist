@@ -17,8 +17,8 @@ const Title_text = styled.Text`
 font-size: 24px;
 font-weight: bold;
 text-transform: uppercase;
-text-indent: .5em;
 color: #3C4A60;
+padding-left: 5%;
 `;
 
 const Back_btn = styled.Image`
