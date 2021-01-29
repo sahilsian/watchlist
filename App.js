@@ -74,35 +74,35 @@ const Stack = createStackNavigator();
 export default function App() {
   return (
     <MyProvider>
-    
+
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
           {/* Homepage Stack Screen */}
-          <Stack.Screen 
-          name="Home" 
-          component={HomeScreenPage}
-          options={{ title: 'Home' }}
+          <Stack.Screen
+            name="Home"
+            component={AddStockScreenPage}
+            options={{ title: 'Home' }}
           />
 
           {/* Stock Stack Screen */}
-          <Stack.Screen 
-          name="Stock" 
-          component={StockScreenPage}
-          options={{ title: 'Stock Page' }}
+          <Stack.Screen
+            name="Stock"
+            component={StockScreenPage}
+            options={{ title: 'Stock Page' }}
           />
 
           {/* Search Stock Stack Screen */}
-          <Stack.Screen 
-          name="Search" 
-          component={SearchScreenPage}
-          options={{ title: 'Search Page' }}
+          <Stack.Screen
+            name="Search"
+            component={SearchScreenPage}
+            options={{ title: 'Search Page' }}
           />
 
           {/* Add Stock Stack Screen */}
-          <Stack.Screen 
-          name="Add" 
-          component={AddStockScreenPage}
-          options={{ title: 'Add Page' }}
+          <Stack.Screen
+            name="Add"
+            component={AddStockScreenPage}
+            options={{ title: 'Add Page' }}
           />
 
         </Stack.Navigator>
