@@ -85,6 +85,8 @@ export default function App() {
         initialRouteName="Home"
         screenOptions={{
           headerStyle: {
+            elevation: 0,
+            shadowOpacity: 0,
             borderBottomWidth: 0,
           }
         }}
@@ -93,28 +95,28 @@ export default function App() {
           <Stack.Screen 
           name="Home" 
           component={HomeScreenPage}
-          options={{ headerTitle: props => <Header Title="Watchlist" /> }}
+          options={{ headerTitle: props => <Header Title="Watchlist" Back="none" /> }}
           />
 
           {/* Stock Stack Screen */}
           <Stack.Screen 
           name="Stock" 
           component={StockScreenPage}
-          options={{ headerTitle: props => <Header Title="Watchlist" Back="True" /> }}
+          options={{ headerTitle: props => <Header Title="Watchlist" Back="flex" /> }}
           />
 
           {/* Search Stock Stack Screen */}
           <Stack.Screen 
           name="Search" 
           component={SearchScreenPage}
-          options={{ headerTitle: props => <Header Title="Watchlist" Back="True" /> }}
+          options={{ headerTitle: props => <Header Title="Watchlist" Back="flex" /> }}
           />
 
           {/* Add Stock Stack Screen */}
           <Stack.Screen 
           name="Add" 
           component={AddStockScreenPage}
-          options={{ headerTitle: props => <Header Title="Watchlist" Back="True" /> }}
+          options={{ headerTitle: props => <Header Title="Watchlist" Back="flex" /> }}
           />
 
         </Stack.Navigator>

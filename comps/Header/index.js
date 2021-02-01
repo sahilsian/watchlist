@@ -8,7 +8,6 @@ width: 100%;
 min-height: 40px;
 flex-direction: row;
 align-items: center;
-padding-left: 5%;
 padding-top: 10%;
 background: white;
 `;
@@ -22,9 +21,9 @@ padding-left: 5%;
 `;
 
 const Back_btn = styled.Image`
-min-height: 24px;
-min-width: 14px;
-display: ${props => props.Back ? "True" : "none"};
+max-height: 24px;
+max-width: 14px;
+display: ${props => props.Back};
 `
 
 const Header = ({Title, Back}) => {
