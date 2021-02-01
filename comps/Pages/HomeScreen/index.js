@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components/native'
 import Graph from '../../Graph'
 import SearchItem from '../../SearchItem';
+import CurrentPrice from '../../CurrentPrice';
 
 
 //Importing Axios for HTTP
@@ -80,8 +81,9 @@ const HomeScreen = ({ }) => {
 
     return (
         <FullWidth>
-            {/* Was testing comp search item comp on this page */}
+            {/* Was testing comps on this page */}
             {/* <SearchItem Title="TSLA" /> */}
+            {/* <CurrentPrice Price="$880.02" /> */}
             <Graph
                 Data={data}
             >
