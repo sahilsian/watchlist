@@ -15,8 +15,9 @@ import StockScreen from "./comps/Pages/StockScreen"
 import HomeScreen from "./comps/Pages/HomeScreen"
 import SearchScreen from "./comps/Pages/SearchScreen"
 
-// Importing customer header bar component
-import Header from './comps/Header'
+// Importing comps
+import Header from './comps/Header';
+import SearchItem from './comps/SearchItem';
 
 
 //Creating default styled components

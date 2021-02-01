@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components/native'
 import Graph from '../../Graph'
+import SearchItem from '../../SearchItem';
+
 
 //Importing Axios for HTTP
 var axios = require("axios").default;
@@ -10,6 +12,7 @@ var axios = require("axios").default;
 const FullWidth = styled.View`
     width: 100%
     flex: 1;
+    background-color: #fff;
 `;
 
 //Axios options
@@ -77,10 +80,11 @@ const HomeScreen = ({ }) => {
 
     return (
         <FullWidth>
+            {/* Was testing comp search item comp on this page */}
+            {/* <SearchItem Title="TSLA" /> */}
             <Graph
                 Data={data}
             >
-
             </Graph>
         </FullWidth>
     )
