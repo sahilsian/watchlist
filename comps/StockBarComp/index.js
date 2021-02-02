@@ -130,7 +130,6 @@ const StockBar = ({ stockData }) => {
     const [stockState, setStockState] = useState(false);
 
 
-
     return (
         <DataView>
             {stockData.map(o => <Container>
