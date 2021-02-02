@@ -79,42 +79,42 @@ const Stack = createStackNavigator();
 export default function App() {
   return (
     <MyProvider>
-    
+
       <NavigationContainer>
-        <Stack.Navigator 
-        initialRouteName="Home"
-        screenOptions={{
-          headerStyle: {
-            borderBottomWidth: 0,
-          }
-        }}
+        <Stack.Navigator
+          initialRouteName="Home"
+          screenOptions={{
+            headerStyle: {
+              borderBottomWidth: 0,
+            }
+          }}
         >
           {/* Homepage Stack Screen */}
-          <Stack.Screen 
-          name="Home" 
-          component={HomeScreenPage}
-          options={{ headerTitle: props => <Header Title="Watchlist" /> }}
+          <Stack.Screen
+            name="Home"
+            component={AddStockScreen}
+            options={{ headerTitle: props => <Header Title="Watchlist" /> }}
           />
 
           {/* Stock Stack Screen */}
-          <Stack.Screen 
-          name="Stock" 
-          component={StockScreenPage}
-          options={{ headerTitle: props => <Header Title="Watchlist" Back="True" /> }}
+          <Stack.Screen
+            name="Stock"
+            component={StockScreenPage}
+            options={{ headerTitle: props => <Header Title="Watchlist" Back="True" /> }}
           />
 
           {/* Search Stock Stack Screen */}
-          <Stack.Screen 
-          name="Search" 
-          component={SearchScreenPage}
-          options={{ headerTitle: props => <Header Title="Watchlist" Back="True" /> }}
+          <Stack.Screen
+            name="Search"
+            component={SearchScreenPage}
+            options={{ headerTitle: props => <Header Title="Watchlist" Back="True" /> }}
           />
 
           {/* Add Stock Stack Screen */}
-          <Stack.Screen 
-          name="Add" 
-          component={AddStockScreenPage}
-          options={{ headerTitle: props => <Header Title="Watchlist" Back="True" /> }}
+          <Stack.Screen
+            name="Add"
+            component={AddStockScreenPage}
+            options={{ headerTitle: props => <Header Title="Watchlist" Back="True" /> }}
           />
 
         </Stack.Navigator>

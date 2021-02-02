@@ -57,6 +57,8 @@ const TrashImg = styled.Image`
     width: 16px;
     height: 16px;
     overflow:visible;
+    z-index: 5;
+    display: ${props => props.containerState && props.selectedStock ? "flex" : "none"};
 `;
 
 
@@ -101,59 +103,105 @@ const BodyTxt = styled.Text`
 
 `;
 
+const DataView = styled.View`
+width:100%;
+height: 100%;
+`;
 
-const StockBar = ({ name, market, mrktYield, low, high, }) => {
+
+const fakedb = [
+    {
+        id: 1,
+        username: 'fake',
+        stock: 'TSLA',
+        market: 'NYSE',
+        yield: '1.99',
+        low: '0.81',
+        high: '3.12',
+        saved: true,
+    }
+]
+
+
+const StockBar = ({ stockData }) => {
+    // This represents if the menu is open or closed
     const [contState, setState] = useState(false);
+    // This represents if the stock is on the watch list or not
+    const [stockState, setStockState] = useState(false);
+
+
 
     return (
-        <Container>
-            <StockCont onPress={() => {
-                if (!contState) {
-                    setState(true);
-                    console.log(contState);
-                } else {
-                    setState(false);
-                    console.log(contState);
-                }
-            }}>
-                <ArrowCirle>
-                    <ArrowImg containerState={contState} source={require('../StockBarComp/Arrow.png')} />
-                </ArrowCirle>
-                <TitleText>{name}</ TitleText>
-                {/* <TrashImg source={require('../StockBarComp/TrashBin.png')} /> */}
-            </StockCont>
-            <DropCont containerState={contState}>
-                <TextArea>
-                    <BodyText>
-                        <HeaderTxt>Market:</HeaderTxt>
-                        <BodyTxt>{market}</BodyTxt>
-                    </BodyText>
-                    <BodyText>
-                        <HeaderTxt>Yield:</HeaderTxt>
-                        <BodyTxt>{mrktYield}</BodyTxt>
-                    </BodyText>
-                    <BodyText>
-                        <HeaderTxt>Low:</HeaderTxt>
-                        <BodyTxt>{low}</BodyTxt>
-                    </BodyText>
-                    <BodyText>
-                        <HeaderTxt>High:</HeaderTxt>
-                        <BodyTxt>{high}</BodyTxt>
-                    </BodyText>
-                </TextArea>
-            </DropCont>
-        </Container>
+        <DataView>
+            {stockData.map(o => <Container>
+                <StockCont onPress={() => {
+                    if (!contState) {
+                        setState(true);
+                    } else {
+                        setState(false);
+                    };
+                    if (o.saved === true) {
+                        console.log(o.saved)
+                        setStockState(true);
+                        console.log(stockState);
+                    } else {
+                        setStockState(false);
+                        console.log(o.saved)
+                        console.log(stockState);
+                    }
+                }}
+
+                >
+                    <ArrowCirle>
+                        <ArrowImg containerState={contState} source={require('../StockBarComp/Arrow.png')} />
+                    </ArrowCirle>
+                    <TitleText>{o.stock}</ TitleText>
+                    <TrashImg containerState={contState} selectedStock={stockState} source={require('../StockBarComp/TrashBin.png')} />
+
+                </StockCont>
+                <DropCont containerState={contState}>
+                    <TextArea>
+                        <BodyText>
+                            <HeaderTxt>Market:</HeaderTxt>
+                            <BodyTxt>{o.market}</BodyTxt>
+                        </BodyText>
+                        <BodyText>
+                            <HeaderTxt>Yield:</HeaderTxt>
+                            <BodyTxt>{o.yield}</BodyTxt>
+                        </BodyText>
+                        <BodyText>
+                            <HeaderTxt>Low:</HeaderTxt>
+                            <BodyTxt>{o.low}</BodyTxt>
+                        </BodyText>
+                        <BodyText>
+                            <HeaderTxt>High:</HeaderTxt>
+                            <BodyTxt>{o.high}</BodyTxt>
+                        </BodyText>
+                    </TextArea>
+                </DropCont>
+            </Container>)}
+        </DataView>
     )
 }
 
 StockBar.defaultProps = {
-    name: "TEST",
-    market: "PLCHLDR",
-    mrktYield: "$0.00",
-    low: "$0.00",
-    high: "$0.00",
     containerState: null,
+    stockData: fakedb
 }
 
 
 export default StockBar
+
+
+// {stockData.map(o => <Placeholder></Placeholder>)}>
+
+
+// onPress={() => {
+//     if (o.saved === true) {
+//         console.log(o.saved)
+//         setStockState(true);
+//     } else {
+//         setStockState(false);
+//         console.log(o.saved)
+//     }
+// }} 
