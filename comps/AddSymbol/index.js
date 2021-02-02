@@ -8,11 +8,13 @@ flex-direction: row;
 align-items: center;
 max-width: 140px;
 justify-content: space-evenly;
+padding-left: 10%;
 `
 
 const Label = styled.Text`
 font-size: 14px;
 color: #3C4A60;
+padding-left: 10%;
 `
 
 const Add = styled.Image`

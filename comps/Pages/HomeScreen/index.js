@@ -83,9 +83,9 @@ const HomeScreen = ({ }) => {
     return (
         <FullWidth>
             {/* Was testing comps on this page */}
-            {/* <SearchItem Title="TSLA" /> */}
-            {/* <CurrentPrice Price="$880.02" /> */}
-            <AddSymbol Title="Add a symbol" />
+            {/* <SearchItem Title="TSLA" />
+            <CurrentPrice Price="$880.02" />
+            <AddSymbol Title="Add a symbol" /> */}
             {/* <Graph
                 Data={data}
             >
