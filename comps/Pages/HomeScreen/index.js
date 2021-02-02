@@ -3,6 +3,7 @@ import styled from 'styled-components/native'
 import Graph from '../../Graph'
 import SearchItem from '../../SearchItem';
 import CurrentPrice from '../../CurrentPrice';
+import AddSymbol from '../../AddSymbol';
 
 
 //Importing Axios for HTTP
@@ -84,10 +85,11 @@ const HomeScreen = ({ }) => {
             {/* Was testing comps on this page */}
             {/* <SearchItem Title="TSLA" /> */}
             {/* <CurrentPrice Price="$880.02" /> */}
-            <Graph
+            <AddSymbol Title="Add a symbol" />
+            {/* <Graph
                 Data={data}
             >
-            </Graph>
+            </Graph> */}
         </FullWidth>
     )
 }
