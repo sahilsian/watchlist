@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components/native'
 import Graph from '../../Graph'
+import SearchItem from '../../SearchItem';
+import CurrentPrice from '../../CurrentPrice';
+import AddSymbol from '../../AddSymbol';
+
 
 //Importing Axios for HTTP
 var axios = require("axios").default;
@@ -10,6 +14,7 @@ var axios = require("axios").default;
 const FullWidth = styled.View`
     width: 100%
     flex: 1;
+    background-color: #fff;
 `;
 
 //Axios options
@@ -77,11 +82,14 @@ const HomeScreen = ({ }) => {
 
     return (
         <FullWidth>
-            <Graph
+            {/* Was testing comps on this page */}
+            {/* <SearchItem Title="TSLA" />
+            <CurrentPrice Price="$880.02" />
+            <AddSymbol Title="Add a symbol" /> */}
+            {/* <Graph
                 Data={data}
             >
-
-            </Graph>
+            </Graph> */}
         </FullWidth>
     )
 }
