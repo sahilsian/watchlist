@@ -118,7 +118,7 @@ const fakedb = [
         yield: '1.99',
         low: '0.81',
         high: '3.12',
-        saved: true,
+        saved: false,
     }
 ]
 
@@ -139,23 +139,22 @@ const StockBar = ({ stockData }) => {
                     } else {
                         setState(false);
                     };
-                    if (o.saved === true) {
-                        console.log(o.saved)
-                        setStockState(true);
-                        console.log(stockState);
-                    } else {
+                    if (o.saved === false) {
                         setStockState(false);
-                        console.log(o.saved)
-                        console.log(stockState);
+                        console.log("stockData.saved is " + o.saved);
+                    } else {
+                        setStockState(true);
+                        console.log("stockData.saved is " + o.saved);
                     }
                 }}
 
                 >
                     <ArrowCirle>
-                        <ArrowImg containerState={contState} source={require('../StockBarComp/Arrow.png')} />
+                        <ArrowImg containerState={contState} source={require('./Arrow.png')} />
                     </ArrowCirle>
                     <TitleText>{o.stock}</ TitleText>
-                    <TrashImg containerState={contState} selectedStock={stockState} source={require('../StockBarComp/TrashBin.png')} />
+                    <TrashImg containerState={contState} selectedStock={stockState} resizeMode="contain" source={require('./TrashBin.png')} />
+
 
                 </StockCont>
                 <DropCont containerState={contState}>

@@ -30,20 +30,20 @@ max-width: 14px;
 display: ${props => props.Back};
 `
 
-const Header = ({Title, Back}) => {
+const Header = ({ Title, Back }) => {
     return (
-    <BigWrapper>
-        <SmallWrapper>
-            <TouchableOpacity
-            // onPress= (This is for later... we'll use it to natvigate backwards)
-            >
-                <Back_btn 
-                source={require('../../assets/Back_Btn.png')} 
-                Back={Back} />
-            </TouchableOpacity>
-            <Title_text>{Title}</Title_text>
-        </SmallWrapper>
-    </BigWrapper>
+        <BigWrapper>
+            <SmallWrapper>
+                <TouchableOpacity
+                // onPress= (This is for later... we'll use it to natvigate backwards)
+                >
+                    <Back_btn
+                        source={require('../../assets/Back_Btn.png')}
+                        Back={Back} />
+                </TouchableOpacity>
+                <Title_text>{Title}</Title_text>
+            </SmallWrapper>
+        </BigWrapper>
     )
 }
 
