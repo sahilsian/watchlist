@@ -14,7 +14,7 @@ const FullWidth = styled.ScrollView`
     width: 100%;
     height:100%;
     flex: 1;
-    
+    background-color: white;
 `;
 
 const GCont = styled.View`
@@ -49,7 +49,7 @@ const AddStockScreen = ({ }) => {
             <GCont>
                 <Graph Data={data} />
             </GCont>
-            <StockBar />
+            <StockBar status={true} />
             <AddSymbol />
         </FullWidth >
     )
