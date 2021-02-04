@@ -109,7 +109,7 @@ width:100%;
 height:100%;
 max-height:${props => props.contState ? "165px" : "41px"};
 position:relative;
-background:green;
+
 
 `;
 
@@ -123,14 +123,14 @@ const fakedb = [
         yield: '1.99',
         low: '0.81',
         high: '3.12',
-        saved: true,
+        saved: false,
     },
 ]
 
 
-const StockBar = ({ stockData }) => {
+const StockBar = ({ stockData, status }) => {
     // This represents if the menu is open or closed
-    const [contState, setState] = useState(false);
+    const [contState, setState] = useState({ status });
     // This represents if the stock is on the watch list or not
     const [stockState, setStockState] = useState(false);
 
@@ -191,6 +191,7 @@ StockBar.defaultProps = {
     containerState: null,
     stockData: fakedb,
     high: "test",
+    status: false,
 }
 
 

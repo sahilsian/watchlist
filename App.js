@@ -118,7 +118,7 @@ export default function App() {
           <Stack.Screen
             name="Add"
             component={AddStockScreenPage}
-            options={{ headerTitle: props => <Header Title="Watchlist4" Back="flex" /> }}
+            options={{ headerTitle: props => <Header Title=" Add" Back="flex" /> }}
           />
 
         </Stack.Navigator>

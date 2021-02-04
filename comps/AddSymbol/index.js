@@ -6,9 +6,10 @@ import styled from 'styled-components/native'
 const Cont = styled.TouchableOpacity`
 flex-direction: row;
 align-items: center;
-max-width: 140px;
+max-width: 175px;
 justify-content: space-evenly;
-padding-left: 08.5%;
+padding-left: 16.8%;
+padding-top: 5%;
 `
 
 const Label = styled.Text`
