@@ -109,8 +109,8 @@ width:100%;
 height:100%;
 max-height:${props => props.contState ? "165px" : "41px"};
 position:relative;
-
-
+margin-bottom: 15px;
+background-color: pink;
 `;
 
 

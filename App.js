@@ -84,7 +84,7 @@ export default function App() {
 
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="Add"
+          initialRouteName="Home"
           screenOptions={{
             headerStyle: {
               elevation: 0,
@@ -97,7 +97,7 @@ export default function App() {
           <Stack.Screen
             name="Home"
             component={HomeScreenPage}
-            options={{ headerTitle: props => <Header Title="Watchlist1" Back="none" /> }}
+            options={{ headerTitle: props => <Header Title="Watchlist" Back="none" /> }}
           />
 
           {/* Stock Stack Screen */}
