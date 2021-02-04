@@ -10,6 +10,7 @@ const Container = styled.View`
   max-width: 283px;
   max-height: 185px;
   margin: auto;
+  position:relative;
 `;
 
 const StockCont = styled.TouchableOpacity`
@@ -25,6 +26,7 @@ const StockCont = styled.TouchableOpacity`
     max-width:282px;
     max-height:41px;
     z-index:2;
+    position:relative;
 `;
 
 const ArrowCirle = styled.View`
@@ -68,11 +70,11 @@ const DropCont = styled.View`
     min-height: 165px;
     z-index:0;
     border-radius:25px;
-    position: absolute;
     padding: 52px 17% 7% 17%;
     background: rgba( 60, 74, 96, 0.60 );
     overflow:hidden;
     display: ${props => props.containerState ? "flex" : "none"};
+    position: absolute;
 `
 
 const TextArea = styled.View` 
@@ -104,7 +106,12 @@ const BodyTxt = styled.Text`
 
 const DataView = styled.View`
 width:100%;
-height: 100%;
+height:100%;
+min-height:${props => props.contState ? "165px" : "10px"};
+max-height: 165px;
+position:relative;
+
+
 `;
 
 
@@ -130,7 +137,7 @@ const StockBar = ({ stockData }) => {
 
 
     return (
-        <DataView>
+        <DataView contState={contState}>
             {stockData.map(o => <Container>
                 <StockCont onPress={() => {
                     if (!contState) {
