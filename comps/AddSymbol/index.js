@@ -3,12 +3,12 @@ import { Text, Image, TouchableOpacity } from 'react-native';
 
 import styled from 'styled-components/native'
 
-const Cont =styled.TouchableOpacity`
+const Cont = styled.TouchableOpacity`
 flex-direction: row;
 align-items: center;
 max-width: 140px;
 justify-content: space-evenly;
-padding-left: 10%;
+padding-left: 08.5%;
 `
 
 const Label = styled.Text`
@@ -23,9 +23,9 @@ max-width: 30px;
 `
 
 const AddSymbol = (Title) => {
-    return(
+    return (
         <Cont>
-            <Add source={require('../../assets/Add.png')} 
+            <Add source={require('../../assets/Add.png')}
             />
             <Label>Add symbol</Label>
         </Cont>
