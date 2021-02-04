@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import styled from 'styled-components/native'
 
 
-// border: 1px dashed black; 
 
 const Container = styled.View`
   flex: 1;
@@ -118,8 +117,8 @@ const fakedb = [
         yield: '1.99',
         low: '0.81',
         high: '3.12',
-        saved: false,
-    }
+        saved: true,
+    },
 ]
 
 
@@ -141,10 +140,10 @@ const StockBar = ({ stockData }) => {
                     };
                     if (o.saved === false) {
                         setStockState(false);
-                        console.log("stockData.saved is " + o.saved);
+                        // console.log("stockData.saved is " + o.saved);
                     } else {
                         setStockState(true);
-                        console.log("stockData.saved is " + o.saved);
+                        // console.log("stockData.saved is " + o.saved);
                     }
                 }}
 
@@ -184,22 +183,10 @@ const StockBar = ({ stockData }) => {
 
 StockBar.defaultProps = {
     containerState: null,
-    stockData: fakedb
+    stockData: fakedb,
+    high: "test",
 }
 
 
 export default StockBar
 
-
-// {stockData.map(o => <Placeholder></Placeholder>)}>
-
-
-// onPress={() => {
-//     if (o.saved === true) {
-//         console.log(o.saved)
-//         setStockState(true);
-//     } else {
-//         setStockState(false);
-//         console.log(o.saved)
-//     }
-// }} 
