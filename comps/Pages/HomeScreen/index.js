@@ -4,6 +4,8 @@ import Graph from '../../Graph'
 import SearchItem from '../../SearchItem';
 import CurrentPrice from '../../CurrentPrice';
 import AddSymbol from '../../AddSymbol';
+import StockBar from '../../StockBarComp';
+import { FlatList, ScrollView } from 'react-native-gesture-handler';
 
 
 //Importing Axios for HTTP
@@ -12,10 +14,16 @@ var axios = require("axios").default;
 
 //Creates full width styled component for JSX wrapping
 const FullWidth = styled.View`
-    width: 100%
+    width: 100%;
     flex: 1;
     background-color: #fff;
 `;
+
+const StocksCont = styled.ScrollView`
+    width: 100%;
+    min-height: 41px;
+    background-color: teal;
+`
 
 //Axios options
 
@@ -82,14 +90,15 @@ const HomeScreen = ({ }) => {
 
     return (
         <FullWidth>
-            {/* Was testing comps on this page */}
-            {/* <SearchItem Title="TSLA" />
-            <CurrentPrice Price="$880.02" />
-            <AddSymbol Title="Add a symbol" /> */}
-            {/* <Graph
-                Data={data}
-            >
-            </Graph> */}
+            <Graph Data={data} />
+            <StocksCont>
+                <StockBar />
+                <StockBar />
+                <StockBar />
+                <StockBar />
+                <StockBar />
+            </StocksCont>
+            <AddSymbol />
         </FullWidth>
     )
 }
