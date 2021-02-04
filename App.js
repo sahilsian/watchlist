@@ -17,7 +17,7 @@ import SearchScreen from "./comps/Pages/SearchScreen"
 
 // Importing comps
 import Header from './comps/Header';
-import SearchItem from './comps/SearchItem';
+// import SearchItem from './comps/SearchItem';
 
 
 //Creating default styled components
@@ -80,44 +80,44 @@ const Stack = createStackNavigator();
 export default function App() {
   return (
     <MyProvider>
-    
+
       <NavigationContainer>
-        <Stack.Navigator 
-        initialRouteName="Home"
-        screenOptions={{
-          headerStyle: {
-            elevation: 0,
-            shadowOpacity: 0,
-            borderBottomWidth: 0,
-          }
-        }}
+        <Stack.Navigator
+          initialRouteName="Stock"
+          screenOptions={{
+            headerStyle: {
+              elevation: 0,
+              shadowOpacity: 0,
+              borderBottomWidth: 0,
+            }
+          }}
         >
           {/* Homepage Stack Screen */}
-          <Stack.Screen 
-          name="Home" 
-          component={HomeScreenPage}
-          options={{ headerTitle: props => <Header Title="Watchlist" Back="none" /> }}
+          <Stack.Screen
+            name="Home"
+            component={HomeScreenPage}
+            options={{ headerTitle: props => <Header Title="Watchlist" Back="none" /> }}
           />
 
           {/* Stock Stack Screen */}
-          <Stack.Screen 
-          name="Stock" 
-          component={StockScreenPage}
-          options={{ headerTitle: props => <Header Title="Watchlist" Back="flex" /> }}
+          <Stack.Screen
+            name="Stock"
+            component={StockScreenPage}
+            options={{ headerTitle: props => <Header Title="Watchlist" Back="flex" /> }}
           />
 
           {/* Search Stock Stack Screen */}
-          <Stack.Screen 
-          name="Search" 
-          component={SearchScreenPage}
-          options={{ headerTitle: props => <Header Title="Watchlist" Back="flex" /> }}
+          <Stack.Screen
+            name="Search"
+            component={SearchScreenPage}
+            options={{ headerTitle: props => <Header Title="Watchlist" Back="flex" /> }}
           />
 
           {/* Add Stock Stack Screen */}
-          <Stack.Screen 
-          name="Add" 
-          component={AddStockScreenPage}
-          options={{ headerTitle: props => <Header Title="Watchlist" Back="flex" /> }}
+          <Stack.Screen
+            name="Add"
+            component={AddStockScreenPage}
+            options={{ headerTitle: props => <Header Title="Watchlist" Back="flex" /> }}
           />
 
         </Stack.Navigator>
@@ -126,5 +126,4 @@ export default function App() {
     </MyProvider>
   );
 }
-
 
