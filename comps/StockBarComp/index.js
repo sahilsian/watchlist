@@ -107,10 +107,9 @@ const BodyTxt = styled.Text`
 const DataView = styled.View`
 width:100%;
 height:100%;
-min-height:${props => props.contState ? "165px" : "10px"};
-max-height: 165px;
+max-height:${props => props.contState ? "165px" : "41px"};
 position:relative;
-
+background:green;
 
 `;
 
