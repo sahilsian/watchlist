@@ -6,10 +6,9 @@ import { Dimensions } from 'react-native';
 const Container = styled.View`
     justify-content: center;
     background-color: #fff;
-    padding: 20px 0px;
+    padding: 30px 50px;
 `;
 
-const windowWidth = Dimensions.get('window').width;
 
 const Graph = ({Data}) => {
     
@@ -17,7 +16,7 @@ const Graph = ({Data}) => {
     return (
         <Container>
             <Chart
-            style={{ height: 200, width: windowWidth, backgroundColor: '#fff' }}
+            style={{height: 160, backgroundColor: '#fff' }}
             data={Data}
             xDomain={{ min: 0, max: 10 }}
             yDomain={{ min: -4, max: 20 }}

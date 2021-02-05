@@ -5,7 +5,7 @@ const Wrapper = styled.View`
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-    padding: 10px 20px;
+    padding: 10px 50px;
 `;
 
 const TouchButton = styled.TouchableOpacity`
