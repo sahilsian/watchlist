@@ -23,7 +23,11 @@ const FullWidth = styled.View`
 const StocksCont = styled.ScrollView`
     width: 100%;
     min-height: 41px;
-    background-color: teal;
+`
+
+const Spacer = styled.View`
+    width: 100%;
+    min-height:  ${props => props.spacer ? props.spacer : "40px"};
 `
 
 //Axios options
@@ -34,7 +38,7 @@ const StocksCont = styled.ScrollView`
 //Data points for graph
 
 
-const HomeScreen = ({ }) => {
+const HomeScreen = ({spacer }) => {
 
 
     const [chart, setChart] = useState([])
@@ -122,14 +126,18 @@ const HomeScreen = ({ }) => {
     return (
         <FullWidth>
             <Graph Data={data} />
+            <Spacer />
             <StocksCont>
+                <Spacer spacer="50px" />
                 <StockBar />
                 <StockBar />
                 <StockBar />
                 <StockBar />
                 <StockBar />
+                <Spacer spacer="900px" />
             </StocksCont>
             <AddSymbol />
+            <Spacer spacer="15px" />
         </FullWidth>
     )
 }
