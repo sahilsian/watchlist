@@ -1,6 +1,12 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components/native'
 import Graph from '../../Graph'
+import SearchItem from '../../SearchItem';
+import CurrentPrice from '../../CurrentPrice';
+import AddSymbol from '../../AddSymbol';
+import StockBar from '../../StockBarComp';
+import { FlatList, ScrollView } from 'react-native-gesture-handler';
+
 
 
 //Importing Axios for HTTP
@@ -9,9 +15,16 @@ var axios = require("axios").default;
 
 //Creates full width styled component for JSX wrapping
 const FullWidth = styled.View`
-    width: 100%
+    width: 100%;
     flex: 1;
+    background-color: #fff;
 `;
+
+const StocksCont = styled.ScrollView`
+    width: 100%;
+    min-height: 41px;
+    background-color: teal;
+`
 
 //Axios options
 
@@ -21,7 +34,7 @@ const FullWidth = styled.View`
 //Data points for graph
 
 
-const HomeScreen = ({}) => {
+const HomeScreen = ({ }) => {
 
 
     const [chart, setChart] = useState([])
@@ -108,11 +121,15 @@ const HomeScreen = ({}) => {
 
     return (
         <FullWidth>
-            <Graph
-            Data={data}
-            >
-
-            </Graph>
+            <Graph Data={data} />
+            <StocksCont>
+                <StockBar />
+                <StockBar />
+                <StockBar />
+                <StockBar />
+                <StockBar />
+            </StocksCont>
+            <AddSymbol />
         </FullWidth>
     )
 }
