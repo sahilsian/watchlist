@@ -129,7 +129,7 @@ const fakedb = [
 
 const StockBar = ({ stockData, status }) => {
     // This represents if the menu is open or closed
-    const [contState, setState] = useState({ status });
+    const [contState, setState] = useState(status);
     // This represents if the stock is on the watch list or not
     const [stockState, setStockState] = useState(false);
 
