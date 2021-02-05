@@ -84,7 +84,7 @@ export default function App() {
 
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="Home"
+          initialRouteName="Add"
           screenOptions={{
             headerStyle: {
               elevation: 0,
