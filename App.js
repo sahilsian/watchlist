@@ -111,7 +111,7 @@ export default function App() {
           <Stack.Screen
             name="Search"
             component={SearchScreenPage}
-            options={{ headerTitle: props => <Header Title="Watchlist3" Back="flex" /> }}
+            options={{ headerTitle: props => <Header Title="Search" Back="flex" /> }}
           />
 
           {/* Add Stock Stack Screen */}

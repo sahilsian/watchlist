@@ -5,6 +5,7 @@ import StockBar from '../../StockBarComp'
 import TimeSelector from '../../TimeSelector'
 import AddSymbol from '../../AddSymbol'
 
+
 //Importing Axios for HTTP
 var axios = require("axios").default;
 
@@ -35,9 +36,9 @@ const Spacer = styled.View`
 
 
 
-const HomeScreen = ({spacer }) => {
+const HomeScreen = ({spacer, onSearchPress }) => {
 
-
+    
 
     const [chart, setChart] = useState([])
     const [rounded, setRounded] = useState([])
@@ -139,7 +140,7 @@ const HomeScreen = ({spacer }) => {
                 <StockBar />
                 <Spacer spacer="900px" />
             </StocksCont>
-            <AddSymbol />
+            <AddSymbol  />
             <Spacer spacer="15px" />
         </FullWidth>
     )
