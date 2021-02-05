@@ -129,9 +129,8 @@ const HomeScreen = ({spacer }) => {
 
             </Graph>
             <TimeSelector></TimeSelector>
-            <Spacer />
             <StocksCont>
-                <Spacer spacer="50px" />
+                <Spacer spacer="30px" />
                 <StockBar />
                 <StockBar />
                 <StockBar />
