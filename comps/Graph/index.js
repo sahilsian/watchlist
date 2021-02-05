@@ -1,96 +1,77 @@
-import React, {useState} from 'react'
+import React from 'react'
 import styled from 'styled-components/native'
-import { Rect, Text as TextSVG, Svg } from "react-native-svg";
-import { View, Text } from 'react-native'
-
-import {
-    LineChart,
-    BarChart,
-    PieChart,
-    ProgressChart,
-    ContributionGraph
-  } from 'react-native-chart-kit'
-
-import { Dimensions } from 'react-native'
-
-const screenWidth = Dimensions.get('window').width - 10
-
-
-
-const chartConfig = {
-    backgroundGradientFrom: '#FFF',
-    backgroundGradientTo: '#FFF',
-    color: (opacity = 1) => `rgba(60, 74, 96)`,
-    strokeWidth: 1.5,
-    fillShadowGradient: `rgba(60, 74, 96)`,
-    
-}
+import { Chart, VerticalAxis, HorizontalAxis, Line, Area, Tooltip } from 'react-native-responsive-linechart'
+import { Dimensions } from 'react-native';
 
 const Container = styled.View`
-    width: 100%;
-    flex: 1;
     justify-content: center;
     background-color: #fff;
+    padding: 20px 0px;
 `;
 
+const windowWidth = Dimensions.get('window').width;
 
 const Graph = ({Data}) => {
-    let [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0, visible: false, value: 0 })
+    
 
     return (
         <Container>
-            <LineChart
-            
+            <Chart
+            style={{ height: 200, width: windowWidth, backgroundColor: '#fff' }}
             data={Data}
-            width={screenWidth}
-            height={220}
-            withInnerLines={false}
-            withOuterLines={false}
-            withVerticalLabels={false}
-            withDots={false}
-            chartConfig={chartConfig}
-            touchEnabled={true}
-            dragEnabled={true}
-            pinchZoom={true}
-            withHorizontalLabels={false}
+            xDomain={{ min: 0, max: 10 }}
+            yDomain={{ min: -4, max: 20 }}
             
-            decorator={() => {
-                    return tooltipPos.visible ? <View>
-                        <Svg>
-                            <Rect x={tooltipPos.x - 15} 
-                                y={tooltipPos.y + 10} 
-                                width="40" 
-                                height="30"
-                                fill="black" />
-                                <TextSVG
-                                    x={tooltipPos.x + 5}
-                                    y={tooltipPos.y + 30}
-                                    fill="white"
-                                    fontSize="16"
-                                    fontWeight="bold"
-                                    textAnchor="middle">
-                                    {tooltipPos.value}
-                                </TextSVG>
-                        </Svg>
-                    </View> : null
-                }}
-                onDataPointClick={(data) => {
-
-                    let isSamePoint = (tooltipPos.x === data.x 
-                                        && tooltipPos.y === data.y)
-
-                    isSamePoint ? setTooltipPos((previousState) => {
-                        return { 
-                                  ...previousState,
-                                  value: data.value,
-                                  visible: !previousState.visible
-                               }
-                    })
-                        : 
-                    setTooltipPos({ x: data.x, value: data.value, y: data.y, visible: true });
-
+            >
+            <VerticalAxis
+                tickCount={0}
+                theme={{ 
+                    labels: { formatter: (v) => v.toFixed(2) },
+                    axis: {
+                        visible: false,
+                        stroke: {
+                          color: '#bbb',
+                          width: 2,
+                          opacity: 1,
+                          dashArray: []
+                        },
+                        dy: 0,
+                      }
+                
                 }}
             />
+            <HorizontalAxis 
+            tickCount={0}
+            theme={{
+                axis: {
+                    visible: false,
+                    stroke: {
+                      color: '#bbb',
+                      width: 2,
+                      opacity: 1,
+                      dashArray: []
+                    },
+                    dy: 0,
+                  }
+            }}
+            
+            />
+            <Area 
+            theme={{ gradient: { from: { color: '#3C4A60', opacity: 0.7}, to: { color: '#ffffff', opacity: 1 } }}}
+            smoothing={'bezier'}
+            tension={0.05}
+            
+            />
+
+            <Line 
+            theme={{ stroke: { color: '#3C4A60', width: 1.8 } }}
+            tooltipComponent={<Tooltip
+                position={{x: 0, y: 20}}
+                 />}
+            smoothing={'bezier'}
+            tension={0.05}
+            />
+            </Chart>
         </Container>
     )
 }
