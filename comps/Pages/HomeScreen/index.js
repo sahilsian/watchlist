@@ -40,41 +40,41 @@ const HomeScreen = ({}) => {
     ]
 
 
-        var options = {
-            method: 'GET',
-            url: 'https://alpha-vantage.p.rapidapi.com/query',
-            params: {
-              interval: '1min',
-              function: 'TIME_SERIES_INTRADAY',
-              symbol: 'AMC',
-              datatype: 'json',
-              output_size: 'compact'
-            },
-        headers: {
-            'x-rapidapi-key': '0fafa20f3emsh32dcdb583b700cbp1985e7jsnfe5f976d3c08',
-            'x-rapidapi-host': 'alpha-vantage.p.rapidapi.com'
-        }
-        };
+        // var options = {
+        //     method: 'GET',
+        //     url: 'https://alpha-vantage.p.rapidapi.com/query',
+        //     params: {
+        //       interval: '1min',
+        //       function: 'TIME_SERIES_INTRADAY',
+        //       symbol: 'AMC',
+        //       datatype: 'json',
+        //       output_size: 'compact'
+        //     },
+        // headers: {
+        //     'x-rapidapi-key': '0fafa20f3emsh32dcdb583b700cbp1985e7jsnfe5f976d3c08',
+        //     'x-rapidapi-host': 'alpha-vantage.p.rapidapi.com'
+        // }
+        // };
 
       
-    useEffect(()=> {
+    // useEffect(()=> {
 
-        //Running request on load of the page
-        axios.request(options)
-        .then((response) => {
-            // Alpha Vantage API
+    //     //Running request on load of the page
+    //     axios.request(options)
+    //     .then((response) => {
+    //         // Alpha Vantage API
 
-            //Chart
-            let chartdata = []
-            chartdata.push(...chartdata, response.data[ "Time Series (1min)" ])
-            chartdata.map((o) => {
+    //         //Chart
+    //         let chartdata = []
+    //         chartdata.push(...chartdata, response.data[ "Time Series (1min)" ])
+    //         chartdata.map((o) => {
                 
-            })
-            let newData = []
-            chartdata.forEach( (object, index) => {
-                 newData.push( { [index + 1]: object[Object.keys(object)[0]] } )
-                 console.log("new: ", newData)
-            })
+    //         })
+    //         let newData = []
+    //         chartdata.forEach( (object, index) => {
+    //              newData.push( { [index + 1]: object[Object.keys(object)[0]] } )
+    //              console.log("new: ", newData)
+    //         })
 
 
             // - Older Yahoo API Manipulation - 
@@ -100,12 +100,12 @@ const HomeScreen = ({}) => {
             // console.log(res)           
 
             
-        }).catch( (error) => {
-            console.error("here is the error:", error);
-        });
+    //     }).catch( (error) => {
+    //         console.error("here is the error:", error);
+    //     });
 
-    }, [])
-
+    // }, [])
+    
     return (
         <FullWidth>
             <Graph
