@@ -96,7 +96,7 @@ export default function App() {
           {/* Homepage Stack Screen */}
           <Stack.Screen
             name="Home"
-            component={HomeScreenPage}
+            component={HomeScreen}
             options={{ headerTitle: props => <Header Title="Watchlist" Back="none" /> }}
           />
 

@@ -1,12 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import styled from 'styled-components/native'
 import Graph from '../../Graph'
-import SearchItem from '../../SearchItem';
-import CurrentPrice from '../../CurrentPrice';
-import AddSymbol from '../../AddSymbol';
-import StockBar from '../../StockBarComp';
-import { FlatList, ScrollView } from 'react-native-gesture-handler';
-
+import TimeSelector from '../../TimeSelector'
 
 
 //Importing Axios for HTTP
@@ -15,11 +10,13 @@ var axios = require("axios").default;
 
 //Creates full width styled component for JSX wrapping
 const FullWidth = styled.View`
-    width: 100%;
+    width: 100%
     flex: 1;
     background-color: #fff;
 `;
 
+<<<<<<< HEAD
+=======
 const StocksCont = styled.ScrollView`
     width: 100%;
     min-height: 41px;
@@ -30,6 +27,7 @@ const Spacer = styled.View`
     min-height:  ${props => props.spacer ? props.spacer : "40px"};
 `
 
+>>>>>>> e3ecb849b5680aca855e94fc7d4d1e06e8bf3e27
 //Axios options
 
 
@@ -38,7 +36,11 @@ const Spacer = styled.View`
 //Data points for graph
 
 
+<<<<<<< HEAD
+const HomeScreen = ({}) => {
+=======
 const HomeScreen = ({spacer }) => {
+>>>>>>> e3ecb849b5680aca855e94fc7d4d1e06e8bf3e27
 
 
     const [chart, setChart] = useState([])
@@ -57,41 +59,41 @@ const HomeScreen = ({spacer }) => {
     ]
 
 
-        var options = {
-            method: 'GET',
-            url: 'https://alpha-vantage.p.rapidapi.com/query',
-            params: {
-              interval: '1min',
-              function: 'TIME_SERIES_INTRADAY',
-              symbol: 'AMC',
-              datatype: 'json',
-              output_size: 'compact'
-            },
-        headers: {
-            'x-rapidapi-key': '0fafa20f3emsh32dcdb583b700cbp1985e7jsnfe5f976d3c08',
-            'x-rapidapi-host': 'alpha-vantage.p.rapidapi.com'
-        }
-        };
+        // var options = {
+        //     method: 'GET',
+        //     url: 'https://alpha-vantage.p.rapidapi.com/query',
+        //     params: {
+        //       interval: '1min',
+        //       function: 'TIME_SERIES_INTRADAY',
+        //       symbol: 'AMC',
+        //       datatype: 'json',
+        //       output_size: 'compact'
+        //     },
+        // headers: {
+        //     'x-rapidapi-key': '0fafa20f3emsh32dcdb583b700cbp1985e7jsnfe5f976d3c08',
+        //     'x-rapidapi-host': 'alpha-vantage.p.rapidapi.com'
+        // }
+        // };
 
       
-    useEffect(()=> {
+    // useEffect(()=> {
 
-        //Running request on load of the page
-        axios.request(options)
-        .then((response) => {
-            // Alpha Vantage API
+    //     //Running request on load of the page
+    //     axios.request(options)
+    //     .then((response) => {
+    //         // Alpha Vantage API
 
-            //Chart
-            let chartdata = []
-            chartdata.push(...chartdata, response.data[ "Time Series (1min)" ])
-            chartdata.map((o) => {
+    //         //Chart
+    //         let chartdata = []
+    //         chartdata.push(...chartdata, response.data[ "Time Series (1min)" ])
+    //         chartdata.map((o) => {
                 
-            })
-            let newData = []
-            chartdata.forEach( (object, index) => {
-                 newData.push( { [index + 1]: object[Object.keys(object)[0]] } )
-                 console.log("new: ", newData)
-            })
+    //         })
+    //         let newData = []
+    //         chartdata.forEach( (object, index) => {
+    //              newData.push( { [index + 1]: object[Object.keys(object)[0]] } )
+    //              console.log("new: ", newData)
+    //         })
 
 
             // - Older Yahoo API Manipulation - 
@@ -117,14 +119,22 @@ const HomeScreen = ({spacer }) => {
             // console.log(res)           
 
             
-        }).catch( (error) => {
-            console.error("here is the error:", error);
-        });
+    //     }).catch( (error) => {
+    //         console.error("here is the error:", error);
+    //     });
 
-    }, [])
+    // }, [])
 
     return (
         <FullWidth>
+<<<<<<< HEAD
+            <Graph
+            Data={data}
+            >
+
+            </Graph>
+            <TimeSelector></TimeSelector>
+=======
             <Graph Data={data} />
             <Spacer />
             <StocksCont>
@@ -138,6 +148,7 @@ const HomeScreen = ({spacer }) => {
             </StocksCont>
             <AddSymbol />
             <Spacer spacer="15px" />
+>>>>>>> e3ecb849b5680aca855e94fc7d4d1e06e8bf3e27
         </FullWidth>
     )
 }
