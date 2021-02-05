@@ -130,9 +130,8 @@ const HomeScreen = ({spacer, onSearchPress }) => {
 
             </Graph>
             <TimeSelector></TimeSelector>
-            <Spacer />
             <StocksCont>
-                <Spacer spacer="50px" />
+                <Spacer spacer="30px" />
                 <StockBar />
                 <StockBar />
                 <StockBar />
