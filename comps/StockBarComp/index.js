@@ -74,7 +74,9 @@ const DropCont = styled.View`
     background: rgba( 60, 74, 96, 0.60 );
     overflow:hidden;
     display: ${props => props.containerState ? "flex" : "none"};
+    opacity:${props => props.containerState ? "100" : "0"};
     position: absolute;
+    flex-grow:1;
 `
 
 const TextArea = styled.View` 
@@ -110,6 +112,7 @@ height:100%;
 max-height:${props => props.contState ? "165px" : "41px"};
 position:relative;
 margin-bottom: 15px;
+
 `;
 
 
