@@ -8,15 +8,13 @@ const Cont = styled.TouchableOpacity`
 flex-direction: row;
 align-items: center;
 max-width: 175px;
-justify-content: space-evenly;
-padding-left: 16.8%;
-padding-top: 5%;
+padding-left: 10%;
 `
 
 const Label = styled.Text`
 font-size: 14px;
 color: #3C4A60;
-padding-left: 10%;
+padding-left: 5%;
 `
 
 const Add = styled.Image`
