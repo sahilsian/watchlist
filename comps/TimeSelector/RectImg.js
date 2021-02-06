@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Image } from 'react-native'
 
 const GradientImage = styled.Image`
-height:90%;
+height:100%;
 width:100%
 position:absolute;
 `
