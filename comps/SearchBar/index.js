@@ -17,7 +17,6 @@ font-weight: 300;
 font-style: italic;
 text-transform: uppercase;
 padding-left: 10px;
-
 `
 const Wrapper = styled.View`
 min-height: 41px;
@@ -42,7 +41,7 @@ const SearchBar = ({onChangeText}) => {
     <Container>
         <Wrapper>
             <Icon source={require('../../assets/search.png')} />
-            <Input placeholder="Search" onChangeText={onChangeText} />
+            <Input placeholder="Search" onChangeText={onChangeText} autoCompleteType="off" />
         </Wrapper>
     </Container>
     
