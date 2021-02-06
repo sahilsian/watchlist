@@ -13,7 +13,7 @@ const FullWidth = styled.ScrollView`
     background-color: #fff;
 `;
 
-const SearchScreen = ({}) => {
+const SearchScreen = ({onPress}) => {
     const navigation = useNavigation();
     const [data, setData] = useState([])
     const [searchTerm, setSearchTerm] = useState("")
@@ -63,11 +63,7 @@ const SearchScreen = ({}) => {
            )})
             :
             <SearchItem Title={"TSLA"} 
-            onPress={()=> {
-                navigation.navigate('Stock', {
-                    equity: "TSLA"
-                })
-            }}/>
+            onPress={onPress}/>
             }
 
         </FullWidth>
