@@ -6,7 +6,6 @@ import { Dimensions } from 'react-native';
 const Container = styled.View`
     justify-content: center;
     background-color: #fff;
-    padding: 30px 50px;
 `;
 
 
@@ -26,6 +25,7 @@ const Graph = ({Data}) => {
                 { x: 8, y: 12 },
                 { x: 9, y: 13.5 },
                 { x: 10, y: 18 }]}
+
             xDomain={{ min: 0, max: 10 }}
             yDomain={{ min: -4, max: 20 }}
             

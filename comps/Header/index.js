@@ -10,10 +10,9 @@ height: 40px;
 `;
 
 const SmallWrapper = styled.View`
-position: absolute;
 flex-direction: row;
+justify-content: center;
 align-items: center;
-left: 7%;
 height: 40px;
 `
 

@@ -17,6 +17,7 @@ import SearchScreen from "./comps/Pages/SearchScreen"
 
 // Importing comps
 import Header from './comps/Header';
+import { ScrollView } from 'react-native-gesture-handler';
 // import SearchItem from './comps/SearchItem';
 
 
@@ -121,21 +122,23 @@ export default function App() {
           <Stack.Screen
             name="Stock"
             component={StockScreenPage}
-            options={{ headerTitle: props => <Header Title="Title" Back="flex" /> }}
+
+            options={{ headerTitle: props => <Header Title="Stock Name" Back="none" /> }}
+
           />
 
           {/* Search Stock Stack Screen */}
           <Stack.Screen
             name="Search"
             component={SearchScreenPage}
-            options={{ headerTitle: props => <Header Title="Search" Back="flex" /> }}
+            options={{ headerTitle: props => <Header Title="Search" Back="none" /> }}
           />
 
           {/* Add Stock Stack Screen */}
           <Stack.Screen
             name="Add"
             component={AddStockScreenPage}
-            options={{ headerTitle: props => <Header Title=" Add" Back="flex" /> }}
+            options={{ headerTitle: props => <Header Title=" Add" Back="none" /> }}
           />
 
         </Stack.Navigator>

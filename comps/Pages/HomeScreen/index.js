@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import {StyleSheet} from 'react-native'
 import styled from 'styled-components/native'
 import Graph from '../../Graph'
 import StockBar from '../../StockBarComp'
@@ -11,20 +12,20 @@ var axios = require("axios").default;
 
 
 //Creates full width styled component for JSX wrapping
-const FullWidth = styled.View`
-    width: 100%
+const Wrap = styled.View`
     flex: 1;
-    background-color: #fff;
-`;
-
-const StocksCont = styled.ScrollView`
-    width: 100%;
-    min-height: 41px;
 `
 
-const Spacer = styled.View`
+const FullWidth = styled.ScrollView`
+    background-color: #fff;
+`
+
+const BottomCont = styled.View`
+    position: absolute;
+    justify-content: center;
+    top: 90%;
+    min-height: 30px;
     width: 100%;
-    min-height:  ${props => props.spacer ? props.spacer : "40px"};
 `
 
 //Axios options
@@ -36,7 +37,7 @@ const Spacer = styled.View`
 
 
 
-const HomeScreen = ({spacer, onSearchPress }) => {
+const HomeScreen = ({ onSearchPress }) => {
 
     
     const [data, setData] = useState([])
@@ -100,26 +101,30 @@ const HomeScreen = ({spacer, onSearchPress }) => {
 
     }, [])
 
+    const styles = StyleSheet.create({
+        contentContainer: {
+            flexGrow: 2,
+        }
+    })
+
     return (
-        <FullWidth>
+        <Wrap>
+        <FullWidth contentContainerStyle={styles.contentContainer}>
             <Graph
             Data={chart}
             >
 
             </Graph>
             <TimeSelector></TimeSelector>
-            <StocksCont>
-                <Spacer spacer="30px" />
                 <StockBar />
                 <StockBar />
                 <StockBar />
-                <StockBar />
-                <StockBar />
-                <Spacer spacer="900px" />
-            </StocksCont>
-            <AddSymbol  />
-            <Spacer spacer="15px" />
+
+            <BottomCont>
+                <AddSymbol  />
+            </BottomCont>
         </FullWidth>
+        </Wrap>
     )
 }
 
