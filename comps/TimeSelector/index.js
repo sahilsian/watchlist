@@ -13,29 +13,39 @@ const Wrapper = styled.View`
 const TouchButton1 = styled.TouchableOpacity`
 ${props => props.oneDayActive && "border-color:#3C4A60;"}
 ${props => props.oneDayActive && "border-bottom-width:3;"}
+border-bottom-left-radius: 1;
+border-bottom-right-radius: 1;
 `;
 
 const TouchButton2 = styled.TouchableOpacity`
 ${props => props.twoDayActive && "border-color:#3C4A60;"}
 ${props => props.twoDayActive && "border-bottom-width:3;"}
+border-bottom-left-radius: 1;
+border-bottom-right-radius: 1;
 `;
 
 
 const TouchButton3 = styled.TouchableOpacity`
 ${props => props.threeDayActive && "border-color:#3C4A60;"}
 ${props => props.threeDayActive && "border-bottom-width:3;"}
+border-bottom-left-radius: 1;
+border-bottom-right-radius: 1;
 `;
 
 
 const TouchButton4 = styled.TouchableOpacity`
 ${props => props.fourDayActive && "border-color:#3C4A60;"}
 ${props => props.fourDayActive && "border-bottom-width:3;"}
+border-bottom-left-radius: 1;
+border-bottom-right-radius: 1;
 `;
 
 
 const TouchButton5 = styled.TouchableOpacity`
 ${props => props.fiveDayActive && "border-color:#3C4A60;"}
 ${props => props.fiveDayActive && "border-bottom-width:3;"}
+border-bottom-left-radius: 1;
+border-bottom-right-radius: 1;
 `;
 
 
