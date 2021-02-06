@@ -31,11 +31,13 @@ const FullWidth = styled.View`
 const BottomCont = styled.View`
     position: absolute;
     justify-content: center;
-    top: 90%;
+    top: 98%;
     min-height: 30px;
-    width: 100%;
+    width: 44 %;
+    border-radius:100px;
     
 `
+// background:blue;
 
 //Axios options
 

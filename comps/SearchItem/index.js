@@ -28,13 +28,13 @@ background-color: #3C4A60;
 bottom: 0;
 `
 
-const SearchItem = ({Title, onPress}) => {
+const SearchItem = ({ Title, onPress }) => {
     return (
-    <Container onPress={onPress}>
-        <Title_text>{Title}</Title_text>
-        <Divider />
-    </Container>
-    
+        <Container onPress={onPress}>
+            <Title_text>{Title}</Title_text>
+            <Divider />
+        </Container>
+
     )
 }
 
