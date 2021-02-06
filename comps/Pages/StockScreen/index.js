@@ -13,9 +13,6 @@ const FullWidth = styled.View`
     background-color: #fff;
 `;
 
-
-
-
 const StockScreen = ({children, name}) => {
 
     var options = {
