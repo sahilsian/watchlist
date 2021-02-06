@@ -7,10 +7,10 @@ const FullWidth = styled.View`
     flex: 1;
 `;
 
-const StockScreen = ({}) => {
+const StockScreen = ({ }) => {
     return (
         <FullWidth>
-            
+
         </FullWidth>
     )
 }

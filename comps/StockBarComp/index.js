@@ -7,10 +7,11 @@ const Container = styled.View`
   flex: 1;
   width: 100%;
   align-items: center;
-  max-width: 283px;
+  max-width: 300px;
   max-height: 185px;
   margin: auto;
   position:relative;
+
 `;
 
 const StockCont = styled.TouchableOpacity`
@@ -23,7 +24,7 @@ const StockCont = styled.TouchableOpacity`
     background-color: #3C4A60;
     border-radius:100px;
     padding: 0 10px;
-    max-width:282px;
+    max-width:300px;
     max-height:41px;
     z-index:2;
     position:relative;
@@ -66,7 +67,7 @@ const TrashImg = styled.Image`
 const DropCont = styled.View`
     width:100%;
     height:100%;
-    max-width:282px;
+    max-width:300px;
     min-height: 165px;
     z-index:0;
     border-radius:25px;
@@ -108,11 +109,9 @@ const BodyTxt = styled.Text`
 
 const DataView = styled.View`
 width:100%;
-height:100%;
-max-height:${props => props.contState ? "165px" : "41px"};
+height:${props => props.contState ? "165px" : "41px"};
 position:relative;
 margin-bottom: 15px;
-
 `;
 
 
