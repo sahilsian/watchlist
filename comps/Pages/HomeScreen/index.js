@@ -14,12 +14,14 @@ var axios = require("axios").default;
 //Creates full width styled component for JSX wrapping
 const Wrap = styled.View`
     flex: 1;
+    background-color: #fff;
 `
 
 const StockBarDiv = styled.ScrollView`
 height:50%;
 overflow:visible;
 z-index:-10;
+background-color: #fff;
 `
 
 const FullWidth = styled.View`
@@ -32,6 +34,7 @@ const BottomCont = styled.View`
     top: 90%;
     min-height: 30px;
     width: 100%;
+    
 `
 
 //Axios options

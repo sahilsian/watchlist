@@ -5,6 +5,7 @@ import Graph from '../../Graph'
 import TimeSelector from '../../TimeSelector';
 import StockBar from '../../StockBarComp';
 import axios from 'axios'
+import AddSymbol from '../../AddSymbol';
 
 //Creates full width styled component for JSX wrapping
 const FullWidth = styled.View`
@@ -35,8 +36,9 @@ const StockScreen = ({children, name}) => {
         <FullWidth>
             <Graph></Graph>
             <TimeSelector></TimeSelector>
-            <StockBar></StockBar>
+            <StockBar status="true"></StockBar>
             {children}
+            <AddSymbol />
         </FullWidth>
     )
 }
