@@ -5,6 +5,7 @@ import StockBar from '../../StockBarComp'
 import TimeSelector from '../../TimeSelector'
 import AddSymbol from '../../AddSymbol'
 
+
 //Importing Axios for HTTP
 var axios = require("axios").default;
 
@@ -35,15 +36,11 @@ const Spacer = styled.View`
 
 
 
-const HomeScreen = ({spacer }) => {
+const HomeScreen = ({spacer, onSearchPress }) => {
 
-
-
-    const [chart, setChart] = useState([])
-    const [rounded, setRounded] = useState([])
-
-    const data = [
-        { x: -2, y: 15 },
+    
+    const [data, setData] = useState([])
+    const [chart, setChart] = useState([{ x: -2, y: 15 },
         { x: -1, y: 10 },
         { x: 0, y: 12 },
         { x: 5, y: 8 },
@@ -51,80 +48,62 @@ const HomeScreen = ({spacer }) => {
         { x: 7, y: 14 },
         { x: 8, y: 12 },
         { x: 9, y: 13.5 },
-        { x: 10, y: 18 },
-    ]
+        { x: 10, y: 18 }])
+    const [rounded, setRounded] = useState([])
+
+    
 
 
-        // var options = {
-        //     method: 'GET',
-        //     url: 'https://alpha-vantage.p.rapidapi.com/query',
-        //     params: {
-        //       interval: '1min',
-        //       function: 'TIME_SERIES_INTRADAY',
-        //       symbol: 'AMC',
-        //       datatype: 'json',
-        //       output_size: 'compact'
-        //     },
-        // headers: {
-        //     'x-rapidapi-key': '0fafa20f3emsh32dcdb583b700cbp1985e7jsnfe5f976d3c08',
-        //     'x-rapidapi-host': 'alpha-vantage.p.rapidapi.com'
-        // }
-        // };
+        var options = {
+            method: 'GET',
+            url: 'https://alpha-vantage.p.rapidapi.com/query',
+            params: {
+              interval: '1min',
+              function: 'TIME_SERIES_INTRADAY',
+              symbol: 'AMC',
+              datatype: 'json',
+              output_size: 'compact'
+            },
+        headers: {
+            'x-rapidapi-key': '0fafa20f3emsh32dcdb583b700cbp1985e7jsnfe5f976d3c08',
+            'x-rapidapi-host': 'alpha-vantage.p.rapidapi.com'
+        }
+        };
 
       
-    // useEffect(()=> {
+    useEffect(()=> {
+        //const seconds = Date.parse("2021-02-04T18:21:00")
+        //console.log(seconds)
+        //Running request on load of the page
+        axios.request(options)
+        .then((response) => {
+        //    //console.log(response)
+        //    var arr = [];
+        //    for(var time in response.data["Time Series (1min)"]){
+        //        var obj = response.data["Time Series (1min)"][time]
+        //        //console.log(obj);
+        //     // const seconds = Date.parse(time.replace(" ", "T"));
+        //     let seconds = 1
+        //     //console.log(seconds);
+        //     arr.push({
+        //         y:seconds += 1,
+        //         // date:time,
+        //         x:obj["1. open"]
+        //     })
+        //    }
+        //    console.log(arr);
 
-    //     //Running request on load of the page
-    //     axios.request(options)
-    //     .then((response) => {
-    //         // Alpha Vantage API
+        setData(response)
+        console.log(data)
 
-    //         //Chart
-    //         let chartdata = []
-    //         chartdata.push(...chartdata, response.data[ "Time Series (1min)" ])
-    //         chartdata.map((o) => {
-                
-    //         })
-    //         let newData = []
-    //         chartdata.forEach( (object, index) => {
-    //              newData.push( { [index + 1]: object[Object.keys(object)[0]] } )
-    //              console.log("new: ", newData)
-    //         })
+        });
 
-
-            // - Older Yahoo API Manipulation - 
-            // const result = response.data.chart.result[0].indicators.quote[0].open
-
-            // let divideInto = 5;
-            // let means = new Array(Math.ceil(result.length / divideInto)).fill().map(() => {
-            //     let nums = result.splice(0, divideInto)
-            //     return nums.reduce((    x, y) => x + y) / nums.length;
-            // });
-
-            // let arr = means.map(a => a.toFixed(2));
-            // let myArray = arr.filter((i)=> i != null && i != 0.00)
-
-            // let average = myArray.reduce((a, b) => parseInt(a) + parseInt(b), 0)
-            
-            // let fullaverage = average / myArray.length
-
-            // let mainArr = myArray.filter((i) => i > fullaverage - 150)
-
-            // setRes(mainArr)
-
-            // console.log(res)           
-
-            
-    //     }).catch( (error) => {
-    //         console.error("here is the error:", error);
-    //     });
-
-    // }, [])
+    }, [])
 
     return (
         <FullWidth>
             <Graph
-            Data={data}
+            Data={chart}
             >
 
             </Graph>
@@ -138,7 +117,7 @@ const HomeScreen = ({spacer }) => {
                 <StockBar />
                 <Spacer spacer="900px" />
             </StocksCont>
-            <AddSymbol />
+            <AddSymbol  />
             <Spacer spacer="15px" />
         </FullWidth>
     )
