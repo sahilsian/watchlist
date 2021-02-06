@@ -28,6 +28,12 @@ const Screen = styled.View`
   align-items: center;
 `;
 
+const Test = styled.View`
+  width: 20px;
+  height: 20px;
+  background-color: #fad;
+`;
+
 //Creating homepage
 function HomeScreenPage() {
   return (
@@ -41,21 +47,30 @@ function HomeScreenPage() {
 }
 
 //Creating stock screen
-function StockScreenPage() {
+function StockScreenPage({navigation, route}) {
+  const { equity } = route.params;
   return (
     <Screen>
-      <StockScreen>
+      <StockScreen
+      name={equity}
+      >
         {/* Page contents go here */}
+        
       </StockScreen>
     </Screen>
   );
 }
 
 //Creating search screen
-function SearchScreenPage() {
+function SearchScreenPage({navigation}) {
   return (
     <Screen>
-      <SearchScreen>
+      <SearchScreen 
+      onPress={()=> {
+        navigation.navigate('Stock', {
+          equity: "TSLA"
+        })
+      }}>
         {/* Page contents go here */}
       </SearchScreen>
     </Screen>
@@ -64,11 +79,13 @@ function SearchScreenPage() {
 
 //Creating page to add stocks
 //Affiliated with search screen
-function AddStockScreenPage() {
+function AddStockScreenPage({route}) {
+  
   return (
     <Screen>
       <AddStockScreen>
         {/* Page contents go here */}
+        
       </AddStockScreen>
     </Screen>
   );
@@ -105,7 +122,9 @@ export default function App() {
           <Stack.Screen
             name="Stock"
             component={StockScreenPage}
+
             options={{ headerTitle: props => <Header Title="Stock Name" Back="none" /> }}
+
           />
 
           {/* Search Stock Stack Screen */}
