@@ -124,7 +124,7 @@ const fakedb = [
         yield: '1.99',
         low: '0.81',
         high: '3.12',
-        saved: false,
+        saved: true,
     },
 ]
 

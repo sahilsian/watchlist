@@ -35,7 +35,6 @@ const BottomCont = styled.View`
     min-height: 30px;
     width: 44 %;
     border-radius:100px;
-    
 `
 // background:blue;
 
@@ -128,7 +127,7 @@ const HomeScreen = ({ onSearchPress }) => {
                 </Graph>
                 <TimeSelector></TimeSelector>
                 <StockBarDiv >
-                    <StockBar />
+                    <StockBar containerState={true} />
                     <StockBar />
                     <StockBar />
                     <StockBar />
