@@ -9,12 +9,16 @@ flex-direction: row;
 align-items: center;
 max-width: 175px;
 padding-right: 05%;
-background-color:rgba(255, 255, 255, 0.8);
-border: 4px solid rgba(255, 255, 255, 0.8);
+background-color:rgba(255, 255, 255, 1);
+border: 4px solid rgba(255, 255, 255, 1);
 position: absolute;
 border-radius:100px;
 left:45px;
 
+shadow-color: #333;
+shadow-offset: { width: 0 , height: 0 };
+shadow-opacity: 0.5;
+shadow-radius: 10px; 
 `
 // shadowOffset:{
 //     width:0,
