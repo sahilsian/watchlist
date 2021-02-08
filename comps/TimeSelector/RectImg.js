@@ -3,12 +3,13 @@ import styled from "styled-components";
 import { Image } from 'react-native'
 
 const GradientImage = styled.Image`
-height:100%;
+top:0px;
+height:160%;
 width:100%
 position:absolute;
 `
 
 const GradientImg = () => (
-    <GradientImage source={require('./GradRect.png')} />
+    <GradientImage pointerEvents={"none"} source={require('./WhiteGradient.png')} />
 )
 export default GradientImg;

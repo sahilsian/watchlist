@@ -7,29 +7,29 @@ const Wrapper = styled.View`
     justify-content: space-between;
     width: 100%;
     padding: 20px 50px;
-    padding-bottom:50px;
+    padding-bottom:0px;
 `;
 
 const TouchButton1 = styled.TouchableOpacity`
 ${props => props.oneDayActive && "border-color:#3C4A60;"}
 ${props => props.oneDayActive && "border-bottom-width:3;"}
-border-bottom-left-radius: 1;
-border-bottom-right-radius: 1;
+border-bottom-left-radius: 1px;
+border-bottom-right-radius: 1px;
 `;
 
 const TouchButton2 = styled.TouchableOpacity`
 ${props => props.twoDayActive && "border-color:#3C4A60;"}
 ${props => props.twoDayActive && "border-bottom-width:3;"}
-border-bottom-left-radius: 1;
-border-bottom-right-radius: 1;
+border-bottom-left-radius: 1px;
+border-bottom-right-radius: 1px;
 `;
 
 
 const TouchButton3 = styled.TouchableOpacity`
 ${props => props.threeDayActive && "border-color:#3C4A60;"}
 ${props => props.threeDayActive && "border-bottom-width:3;"}
-border-bottom-left-radius: 1;
-border-bottom-right-radius: 1;
+border-bottom-left-radius: 1px;
+border-bottom-right-radius: 1px;
 `;
 
 
@@ -44,8 +44,8 @@ border-bottom-right-radius: 1;
 const TouchButton5 = styled.TouchableOpacity`
 ${props => props.fiveDayActive && "border-color:#3C4A60;"}
 ${props => props.fiveDayActive && "border-bottom-width:3;"}
-border-bottom-left-radius: 1;
-border-bottom-right-radius: 1;
+border-bottom-left-radius: 1px;
+border-bottom-right-radius: 1px;
 `;
 
 
@@ -71,7 +71,7 @@ const TimeSelector = ({ active, oneDayActive, twoDayActive }) => {
 
     return (
         <OuterDiv>
-            <GradientImg />
+            <GradientImg pointerEvents={"none"} />
             <Wrapper>
 
                 <TouchButton1 onPress={() => {
