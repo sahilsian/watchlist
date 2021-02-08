@@ -34,10 +34,10 @@ const FullWidth = styled.View`
 const BottomCont = styled.View`
     position: absolute;
     justify-content: center;
-    top: 93%;
-    left: 1.5%;
+    bottom: 10%;
+    padding-left: 10%;
     min-height: 30px;
-    width: 44 %;
+    width: 100%;
     border-radius:100px;
     
 `
@@ -144,7 +144,7 @@ const HomeScreen = ({ onSearchPress }) => {
                     <StockBar />
                     <BottomPadding />
                 </StockBarDiv >
-                <BottomCont>
+                <BottomCont pointerEvents="none">
                     <AddSymbol />
                 </BottomCont>
             </FullWidth>
