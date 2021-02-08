@@ -15,28 +15,38 @@ var axios = require("axios").default;
 const Wrap = styled.View`
     flex: 1;
     background-color: #fff;
+    overflow:visible;
 `
 
 const StockBarDiv = styled.ScrollView`
-height:50%;
+height:70%;
+padding-top:50px;
 overflow:visible;
 z-index:-10;
-background-color: #fff;
+background-color: white;
 `
 
 const FullWidth = styled.View`
     background-color: #fff;
+    overflow:visible;
 `
 
 const BottomCont = styled.View`
     position: absolute;
     justify-content: center;
-    top: 98%;
+    top: 93%;
+    left: 1.5%;
     min-height: 30px;
     width: 44 %;
     border-radius:100px;
+    
 `
 // background:blue;
+
+const BottomPadding = styled.View`
+height:100px;
+`;
+
 
 //Axios options
 
@@ -127,10 +137,12 @@ const HomeScreen = ({ onSearchPress }) => {
                 </Graph>
                 <TimeSelector></TimeSelector>
                 <StockBarDiv >
-                    <StockBar containerState={true} />
+                    <StockBar status={true} />
                     <StockBar />
                     <StockBar />
                     <StockBar />
+                    <StockBar />
+                    <BottomPadding />
                 </StockBarDiv >
                 <BottomCont>
                     <AddSymbol />
