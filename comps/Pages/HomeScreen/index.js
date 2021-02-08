@@ -144,7 +144,7 @@ const HomeScreen = ({ onSearchPress }) => {
                     <StockBar />
                     <BottomPadding />
                 </StockBarDiv >
-                <BottomCont pointerEvents="none">
+                <BottomCont>
                     <AddSymbol />
                 </BottomCont>
             </FullWidth>
