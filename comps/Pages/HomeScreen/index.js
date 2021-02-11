@@ -34,7 +34,7 @@ const FullWidth = styled.View`
 const BottomCont = styled.View`
     position: absolute;
     justify-content: center;
-    bottom: 10%;
+    bottom: 18%;
     padding-left: 10%;
     min-height: 30px;
     width: 100%;
