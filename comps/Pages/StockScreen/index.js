@@ -6,6 +6,7 @@ import TimeSelector from '../../TimeSelector';
 import StockBar from '../../StockBarComp';
 import axios from 'axios'
 import AddSymbolTwo from '../../AddSymbolTwo';
+import { event } from 'react-native-reanimated';
 
 //Creates full width styled component for JSX wrapping
 const FullWidth = styled.View`
@@ -45,6 +46,15 @@ const StockScreen = ({children, name}) => {
         console.error(error);
     });
 
+
+    function addStock() {
+        handleSubmit = event => {
+            axios.post('', {name})
+            console.log(res);
+            console.log(res.data);
+        }
+    }
+
     return (
         <FullWidth>
             <TopCont>
@@ -56,7 +66,7 @@ const StockScreen = ({children, name}) => {
                 {children}
             </MidCont>
             <BottomCont>
-                <AddSymbolTwo />
+                <AddSymbolTwo onPress={addStock} />
             </BottomCont>
         </FullWidth>
     )
