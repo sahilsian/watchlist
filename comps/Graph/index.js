@@ -4,9 +4,9 @@ import { Chart, VerticalAxis, HorizontalAxis, Line, Area, Tooltip } from 'react-
 import { Dimensions } from 'react-native';
 
 const Container = styled.View`
-padding-top:10px;
-padding-right:11%;
-padding-left: 11%;
+padding-top:10%;
+padding-right:10%;
+padding-left: 10%;
 overflow:visible;
     justify-content: center;
     background-color: #fff;
@@ -19,7 +19,7 @@ const Graph = ({ Data }) => {
     return (
         <Container>
             <Chart
-                style={{ height: 160, overflow: "visible", backgroundColor: '#fff' }}
+                style={{ height: 200, overflow: "visible", backgroundColor: '#fff' }}
                 data={[{ x: -2, y: 15 },
                 { x: -1, y: 10 },
                 { x: 0, y: 12 },

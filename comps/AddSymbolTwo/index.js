@@ -1,5 +1,7 @@
 import React from 'react'
 import { Text, Image, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import axios from 'axios'
 
 import styled from 'styled-components/native'
 
@@ -31,8 +33,11 @@ max-width: 30px;
 `
 
 const AddSymbolTwo = (Title, onPress) => {
+    const navigation = useNavigation();
     return (
-        <Cont>
+        <Cont onPress={() => {
+            navigation.navigate('Home')
+        }}>
             <Add source={require('../../assets/Add.png')}
             />
             <Label>Add symbol</Label>

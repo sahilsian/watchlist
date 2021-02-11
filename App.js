@@ -123,7 +123,7 @@ export default function App() {
             name="Stock"
             component={StockScreenPage}
 
-            options={{ headerTitle: props => <Header Title="Stock Name" Back="none" /> }}
+            options={{ headerTitle: props => <Header Title="Add" Back="none" /> }}
 
           />
 
