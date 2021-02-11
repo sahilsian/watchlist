@@ -8,7 +8,6 @@ flex-direction: row;
 align-items: center;
 max-width: 175px;
 padding-right: 05%;
-position: absolute;
 left:45px;
 
 
