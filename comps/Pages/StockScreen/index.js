@@ -9,10 +9,23 @@ import AddSymbolTwo from '../../AddSymbolTwo';
 
 //Creates full width styled component for JSX wrapping
 const FullWidth = styled.View`
-    width: 100%
-    flex: 1;
-    background-color: #fff;
+position: relative;    
+width: 100%;
+flex: 1;
+background-color: #fff;
 `;
+
+const TopCont = styled.View`
+height: 50%;
+`
+
+const MidCont = styled.View`
+`
+
+const BottomCont = styled.View`
+position: absolute;
+bottom: 5%;
+`
 
 const StockScreen = ({children, name}) => {
 
@@ -34,11 +47,17 @@ const StockScreen = ({children, name}) => {
 
     return (
         <FullWidth>
-            <Graph></Graph>
-            <TimeSelector></TimeSelector>
-            <StockBar status="true"></StockBar>
-            {children}
-            <AddSymbolTwo />
+            <TopCont>
+                <Graph></Graph>
+                <TimeSelector></TimeSelector>
+            </TopCont>
+            <MidCont>
+                <StockBar status="true"></StockBar>
+                {children}
+            </MidCont>
+            <BottomCont>
+                <AddSymbolTwo />
+            </BottomCont>
         </FullWidth>
     )
 }
