@@ -5,6 +5,7 @@ import Graph from '../../Graph'
 import StockBar from '../../StockBarComp'
 import TimeSelector from '../../TimeSelector'
 import AddSymbol from '../../AddSymbol'
+import { set } from 'react-native-reanimated'
 
 
 //Importing Axios for HTTP
@@ -70,9 +71,20 @@ const HomeScreen = ({ onSearchPress }) => {
     { x: 8, y: 12 },
     { x: 9, y: 13.5 },
     { x: 10, y: 18 }])
-    const [rounded, setRounded] = useState([])
+    const [rounded, setRounded] = useState([]);
+    const [allStocks, setAllStocks] = useState();
 
 
+    const deleteStock = () => {
+        var options = {
+            method: 'POST',
+            url: `http://localhost:8080/API/stocks//delete`,
+        };
+        axios.request(options)
+            .then((response) => {
+                console.log(response);
+            });
+    }
 
 
     var options = {
@@ -90,7 +102,20 @@ const HomeScreen = ({ onSearchPress }) => {
             'x-rapidapi-host': 'alpha-vantage.p.rapidapi.com'
         }
     };
+    var optionsTwo = {
+        method: 'GET',
+        url: 'http://localhost:8080/API/stocks/',
 
+    };
+
+    useEffect(() => {
+        axios.request(optionsTwo)
+            .then((response) => {
+                console.log(response.data.result);
+                setAllStocks(response.data.result)
+            })
+
+    }, [])
 
     useEffect(() => {
         //const seconds = Date.parse("2021-02-04T18:21:00")
@@ -115,7 +140,7 @@ const HomeScreen = ({ onSearchPress }) => {
                 //    console.log(arr);
 
                 setData(response)
-                console.log(data)
+
 
             });
 
@@ -137,11 +162,22 @@ const HomeScreen = ({ onSearchPress }) => {
                 </Graph>
                 <TimeSelector></TimeSelector>
                 <StockBarDiv >
-                    <StockBar status={true} />
-                    <StockBar />
-                    <StockBar />
-                    <StockBar />
-                    <StockBar />
+                    {allStocks !== undefined
+                        ?
+                        allStocks.map(o => <StockBar
+                            stock={o.stockname}
+                            // market={ }
+                            // yields={ }
+                            // low={ }
+                            // high={ }
+                            // saved={ }
+                            status={o.open}
+                        />
+                        )
+                        :
+                        <StockBar />
+                    }
+
                     <BottomPadding />
                 </StockBarDiv >
                 <BottomCont>
