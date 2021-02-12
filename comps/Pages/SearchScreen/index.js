@@ -8,7 +8,7 @@ var axios = require("axios").default;
 
 //Creates full width styled component for JSX wrapping
 const FullWidth = styled.ScrollView`
-    width: 100%
+    width: 100%;
     flex: 1;
     background-color: #fff;
 `;
@@ -31,8 +31,8 @@ const SearchScreen = ({onPress}) => {
     useEffect(() => {
         axios.request(options)
 
-        .then((res) => {
-        setData(res)
+        .then((response) => {
+        setData(response)
 
         })
 
