@@ -5,6 +5,7 @@ import Graph from '../../Graph'
 import StockBar from '../../StockBarComp'
 import TimeSelector from '../../TimeSelector'
 import AddSymbol from '../../AddSymbol'
+import { set } from 'react-native-reanimated'
 
 
 //Importing Axios for HTTP
@@ -61,14 +62,38 @@ const HomeScreen = ({ onSearchPress }) => {
 
 
     const [data, setData] = useState([])
+<<<<<<< HEAD
     const [chart, setChart] = useState([
         { x: -0, y: 0 }
     ])
     const [rounded, setRounded] = useState([])
     const[sec, setSec] = useState(0)
     const [miny, setMinY] = useState(null);
+=======
+    const [chart, setChart] = useState([{ x: -2, y: 15 },
+    { x: -1, y: 10 },
+    { x: 0, y: 12 },
+    { x: 5, y: 8 },
+    { x: 6, y: 12 },
+    { x: 7, y: 14 },
+    { x: 8, y: 12 },
+    { x: 9, y: 13.5 },
+    { x: 10, y: 18 }])
+    const [rounded, setRounded] = useState([]);
+    const [allStocks, setAllStocks] = useState();
+>>>>>>> 0b4eac3cf475d76b9db7c36ca60650b82f8d495e
 
 
+    const deleteStock = () => {
+        var options = {
+            method: 'POST',
+            url: `http://localhost:8080/API/stocks//delete`,
+        };
+        axios.request(options)
+            .then((response) => {
+                console.log(response);
+            });
+    }
 
 
     var options = {
@@ -86,7 +111,13 @@ const HomeScreen = ({ onSearchPress }) => {
             'x-rapidapi-host': 'alpha-vantage.p.rapidapi.com'
         }
     };
+    var optionsTwo = {
+        method: 'GET',
+        url: 'http://localhost:8080/API/stocks/',
 
+    };
+
+<<<<<<< HEAD
     const getChart = async() => {
         console.log("pressed");
         axios.request(options)
@@ -112,6 +143,16 @@ const HomeScreen = ({ onSearchPress }) => {
                    setSec(sec+1);
                    //console.log(arr);
                    setChart(chart.concat(arr));
+=======
+    useEffect(() => {
+        axios.request(optionsTwo)
+            .then((response) => {
+                console.log(response.data.result);
+                setAllStocks(response.data.result)
+            })
+
+    }, [])
+>>>>>>> 0b4eac3cf475d76b9db7c36ca60650b82f8d495e
 
 
             });
@@ -120,7 +161,32 @@ const HomeScreen = ({ onSearchPress }) => {
         //const seconds = Date.parse("2021-02-04T18:21:00")
         //console.log(seconds)
         //Running request on load of the page
+<<<<<<< HEAD
         
+=======
+        axios.request(options)
+            .then((response) => {
+                //    //console.log(response)
+                //    var arr = [];
+                //    for(var time in response.data["Time Series (1min)"]){
+                //        var obj = response.data["Time Series (1min)"][time]
+                //        //console.log(obj);
+                //     // const seconds = Date.parse(time.replace(" ", "T"));
+                //     let seconds = 1
+                //     //console.log(seconds);
+                //     arr.push({
+                //         y:seconds += 1,
+                //         // date:time,
+                //         x:obj["1. open"]
+                //     })
+                //    }
+                //    console.log(arr);
+
+                setData(response)
+
+
+            });
+>>>>>>> 0b4eac3cf475d76b9db7c36ca60650b82f8d495e
 
     }, [])
 
@@ -140,11 +206,22 @@ const HomeScreen = ({ onSearchPress }) => {
                 </Graph>
                 <TimeSelector></TimeSelector>
                 <StockBarDiv >
-                    <StockBar status={true} />
-                    <StockBar />
-                    <StockBar />
-                    <StockBar />
-                    <StockBar />
+                    {allStocks !== undefined
+                        ?
+                        allStocks.map(o => <StockBar
+                            stock={o.stockname}
+                            // market={ }
+                            // yields={ }
+                            // low={ }
+                            // high={ }
+                            // saved={ }
+                            status={o.open}
+                        />
+                        )
+                        :
+                        <StockBar />
+                    }
+
                     <BottomPadding />
                 </StockBarDiv >
                 <BottomCont>
