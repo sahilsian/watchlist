@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import styled from 'styled-components/native'
-
+import React, { useState } from 'react';
+import styled from 'styled-components/native';
+import axios from 'axios';
 
 
 const Container = styled.View`
@@ -63,6 +63,13 @@ const TrashImg = styled.Image`
     display: ${props => props.containerState && props.selectedStock ? "flex" : "none"};
 `;
 
+const TrashView = styled.TouchableOpacity`
+position: absolute;
+right:24%;
+top:7%;
+z-index:9;
+`;
+
 
 const DropCont = styled.View`
     width:100%;
@@ -115,37 +122,47 @@ margin-bottom: 15px;
 `;
 
 
-const fakedb = [
-    {
-        id: 1,
-        username: 'fake',
-        stock: 'TSLA',
-        market: 'NYSE',
-        yield: '1.99',
-        low: '0.81',
-        high: '3.12',
-        saved: true,
-    },
-]
 
-
-const StockBar = ({ stockData, status }) => {
+const StockBar = ({ onPress, status, name, username, stock, market, yields, low, high, saved }) => {
     // This represents if the menu is open or closed
     const [contState, setState] = useState(status);
     // This represents if the stock is on the watch list or not
     const [stockState, setStockState] = useState(false);
 
+    var options = {
+        method: 'GET',
+        url: 'https://alpha-vantage.p.rapidapi.com/query',
+        params: { function: 'GLOBAL_QUOTE', symbol: `GME`, datatype: 'json' },
+        headers: {
+            'x-rapidapi-key': '0fafa20f3emsh32dcdb583b700cbp1985e7jsnfe5f976d3c08',
+            'x-rapidapi-host': 'alpha-vantage.p.rapidapi.com'
+        }
+    };
+
+    // axios.request(options).then(function (response) {
+    //     console.log(response.data);
+    // }).catch(function (error) {
+    //     console.error(error);
+    // });
+
+
+
+
+
 
     return (
         <DataView contState={contState}>
-            {stockData.map(o => <Container>
+            <TrashView onPress={onPress}>
+                <TrashImg containerState={contState} selectedStock={stockState} resizeMode="contain" source={require('./TrashBin.png')} />
+            </TrashView>
+            <Container>
                 <StockCont onPress={() => {
                     if (!contState) {
                         setState(true);
                     } else {
                         setState(false);
                     };
-                    if (o.saved === false) {
+                    if (saved === false) {
                         setStockState(false);
                         // console.log("stockData.saved is " + o.saved);
                     } else {
@@ -158,8 +175,8 @@ const StockBar = ({ stockData, status }) => {
                     <ArrowCirle>
                         <ArrowImg containerState={contState} source={require('./Arrow.png')} />
                     </ArrowCirle>
-                    <TitleText>{o.stock}</ TitleText>
-                    <TrashImg containerState={contState} selectedStock={stockState} resizeMode="contain" source={require('./TrashBin.png')} />
+                    <TitleText>{stock}</ TitleText>
+                    {/* <TrashImg containerState={contState} selectedStock={stockState} resizeMode="contain" source={require('./TrashBin.png')} onPress={onPress} /> */}
 
 
                 </StockCont>
@@ -167,32 +184,38 @@ const StockBar = ({ stockData, status }) => {
                     <TextArea>
                         <BodyText>
                             <HeaderTxt>Market:</HeaderTxt>
-                            <BodyTxt>{o.market}</BodyTxt>
+                            <BodyTxt>{market}</BodyTxt>
                         </BodyText>
                         <BodyText>
                             <HeaderTxt>Yield:</HeaderTxt>
-                            <BodyTxt>{o.yield}</BodyTxt>
+                            <BodyTxt>{yields}</BodyTxt>
                         </BodyText>
                         <BodyText>
                             <HeaderTxt>Low:</HeaderTxt>
-                            <BodyTxt>{o.low}</BodyTxt>
+                            <BodyTxt>{low}</BodyTxt>
                         </BodyText>
                         <BodyText>
                             <HeaderTxt>High:</HeaderTxt>
-                            <BodyTxt>{o.high}</BodyTxt>
+                            <BodyTxt>{high}</BodyTxt>
                         </BodyText>
                     </TextArea>
                 </DropCont>
-            </Container>)}
+            </Container>
         </DataView>
     )
 }
 
 StockBar.defaultProps = {
     containerState: null,
-    stockData: fakedb,
     high: "test",
     status: false,
+    username: 'fake',
+    stock: 'TSLA',
+    market: 'NYSE',
+    yields: '1.99',
+    low: '0.81',
+    high: '3.12',
+    saved: true,
 }
 
 
