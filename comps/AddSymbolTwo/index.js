@@ -12,7 +12,6 @@ max-width: 175px;
 padding-right: 05%;
 left:45px;
 
-
 `
 // shadowOffset:{
 //     width:0,
@@ -32,12 +31,14 @@ max-height: 30px;
 max-width: 30px;
 `
 
-const AddSymbolTwo = (Title, onPress) => {
+// navigation.navigate('Home')
+
+const AddSymbolTwo = (Title, onPress, stock) => {
     const navigation = useNavigation();
+
+
     return (
-        <Cont onPress={() => {
-            navigation.navigate('Home')
-        }}>
+        <Cont onPress={onPress}>
             <Add source={require('../../assets/Add.png')}
             />
             <Label>Add symbol</Label>

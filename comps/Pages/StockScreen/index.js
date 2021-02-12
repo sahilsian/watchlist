@@ -28,17 +28,17 @@ position: absolute;
 bottom: 5%;
 `
 
-const StockScreen = ({children, name}) => {
+const StockScreen = ({ children, name }) => {
 
     var options = {
         method: 'GET',
         url: 'https://alpha-vantage.p.rapidapi.com/query',
-        params: {function: 'GLOBAL_QUOTE', symbol: `${name}`, datatype: 'json'},
+        params: { function: 'GLOBAL_QUOTE', symbol: `GME`, datatype: 'json' },
         headers: {
-          'x-rapidapi-key': '0fafa20f3emsh32dcdb583b700cbp1985e7jsnfe5f976d3c08',
-          'x-rapidapi-host': 'alpha-vantage.p.rapidapi.com'
+            'x-rapidapi-key': '0fafa20f3emsh32dcdb583b700cbp1985e7jsnfe5f976d3c08',
+            'x-rapidapi-host': 'alpha-vantage.p.rapidapi.com'
         }
-      };
+    };
 
     axios.request(options).then(function (response) {
         console.log(response.data);
@@ -47,13 +47,27 @@ const StockScreen = ({children, name}) => {
     });
 
 
-    function addStock() {
-        handleSubmit = event => {
-            axios.post('', {name})
-            console.log(res);
-            console.log(res.data);
-        }
+    const saveStock = () => {
+        var options = {
+            method: 'POST',
+            url: `http://localhost:8080/API/stocks//add`,
+        };
+        axios.request(options)
+            .then((response) => {
+                console.log(response);
+            });
     }
+
+
+
+
+    // function addStock() {
+    //     handleSubmit = event => {
+    //         axios.post('', {name})
+    //         console.log(res);
+    //         console.log(res.data);
+    //     }
+    // }
 
     return (
         <FullWidth>
@@ -66,7 +80,7 @@ const StockScreen = ({children, name}) => {
                 {children}
             </MidCont>
             <BottomCont>
-                <AddSymbolTwo onPress={addStock} />
+                <AddSymbolTwo onPress={saveStock()} />
             </BottomCont>
         </FullWidth>
     )
