@@ -13,25 +13,17 @@ overflow:visible;
 `;
 
 
-const Graph = ({ Data }) => {
+const Graph = ({ Data, minx, miny, maxx, maxy }) => {
 
 
     return (
         <Container>
             <Chart
                 style={{ height: 200, overflow: "visible", backgroundColor: '#fff' }}
-                data={[{ x: -2, y: 15 },
-                { x: -1, y: 10 },
-                { x: 0, y: 12 },
-                { x: 5, y: 8 },
-                { x: 6, y: 12 },
-                { x: 7, y: 14 },
-                { x: 8, y: 12 },
-                { x: 9, y: 13.5 },
-                { x: 10, y: 18 }]}
+                data={Data}
 
-                xDomain={{ min: 0, max: 10 }}
-                yDomain={{ min: -4, max: 20 }}
+                xDomain={{ min: 619, max: 720 }}
+                yDomain={{ min: 5.5, max: 5.8 }}
 
             >
                 <VerticalAxis
@@ -85,6 +77,20 @@ const Graph = ({ Data }) => {
             </Chart>
         </Container>
     )
+}
+
+Graph.defaultProps={
+    Data:[
+       { x: -2, y: 15 },
+        { x: -1, y: 10 },
+        { x: 0, y: 12 },
+        { x: 5, y: 8 },
+        { x: 6, y: 12 },
+        { x: 7, y: 14 },
+        { x: 8, y: 12 },
+        { x: 9, y: 13.5 },
+        { x: 10, y: 18 }
+    ]
 }
 
 export default Graph

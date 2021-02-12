@@ -39,11 +39,12 @@ max-width: 30px;
 box-shadow:1px 1px 2px rgba(0,0,0,0.2);
 `
 
-const AddSymbol = (Title, onPress) => {
+const AddSymbol = ({Title, onPress}) => {
     const navigation = useNavigation();
     return (
         <Cont onPress={() => {
-            navigation.navigate('Search')
+            //navigation.navigate('Search')
+            onPress();
         }}>
             <Add source={require('../../assets/Add.png')}
             />
@@ -52,4 +53,7 @@ const AddSymbol = (Title, onPress) => {
     )
 }
 
+AddSymbol.defaultProps={
+    onPress:()=>{}
+}
 export default AddSymbol

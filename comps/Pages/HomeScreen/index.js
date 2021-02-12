@@ -61,16 +61,12 @@ const HomeScreen = ({ onSearchPress }) => {
 
 
     const [data, setData] = useState([])
-    const [chart, setChart] = useState([{ x: -2, y: 15 },
-    { x: -1, y: 10 },
-    { x: 0, y: 12 },
-    { x: 5, y: 8 },
-    { x: 6, y: 12 },
-    { x: 7, y: 14 },
-    { x: 8, y: 12 },
-    { x: 9, y: 13.5 },
-    { x: 10, y: 18 }])
+    const [chart, setChart] = useState([
+        { x: -0, y: 0 }
+    ])
     const [rounded, setRounded] = useState([])
+    const[sec, setSec] = useState(0)
+    const [miny, setMinY] = useState(null);
 
 
 
@@ -91,33 +87,40 @@ const HomeScreen = ({ onSearchPress }) => {
         }
     };
 
+    const getChart = async() => {
+        console.log("pressed");
+        axios.request(options)
+            .then((response) => {
+                   //console.log(response)
+                   var arr = [];
+                   for(var time in response.data["Time Series (1min)"]){
+                       var obj = response.data["Time Series (1min)"][time]
+                       console.log(time);
+                    // const seconds = Date.parse(time.replace(" ", "T"));
+                    const date = new Date(time.replace(" ", "T"));
+                    console.log(date.getHours(), date.getMinutes(), date.getHours()*60+date.getMinutes());
+                   
+                    //console.log(seconds);
+                    arr.push({
+                        x:date.getHours()*60+date.getMinutes(),
+                        // date:time,
+                        y:obj["1. open"]*1
+                    })
+                   }
 
+                   //sort the array for the x value to count up before setChart
+                   setSec(sec+1);
+                   //console.log(arr);
+                   setChart(chart.concat(arr));
+
+
+            });
+    }
     useEffect(() => {
         //const seconds = Date.parse("2021-02-04T18:21:00")
         //console.log(seconds)
         //Running request on load of the page
-        axios.request(options)
-            .then((response) => {
-                //    //console.log(response)
-                //    var arr = [];
-                //    for(var time in response.data["Time Series (1min)"]){
-                //        var obj = response.data["Time Series (1min)"][time]
-                //        //console.log(obj);
-                //     // const seconds = Date.parse(time.replace(" ", "T"));
-                //     let seconds = 1
-                //     //console.log(seconds);
-                //     arr.push({
-                //         y:seconds += 1,
-                //         // date:time,
-                //         x:obj["1. open"]
-                //     })
-                //    }
-                //    console.log(arr);
-
-                setData(response)
-                console.log(data)
-
-            });
+        
 
     }, [])
 
@@ -145,7 +148,7 @@ const HomeScreen = ({ onSearchPress }) => {
                     <BottomPadding />
                 </StockBarDiv >
                 <BottomCont>
-                    <AddSymbol />
+                    <AddSymbol onPress={getChart} />
                 </BottomCont>
             </FullWidth>
         </Wrap>
