@@ -43,7 +43,7 @@ const AddStockScreen = ({ }) => {
             <GCont>
                 <Graph Data={data} />
             </GCont>
-            <StockBar status={true} />
+            <StockBar status={true} contState={false} />
             <AddSymbol />
         </FullWidth >
     )
