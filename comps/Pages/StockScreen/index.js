@@ -7,6 +7,7 @@ import StockBar from '../../StockBarComp';
 import axios from 'axios'
 import AddSymbolTwo from '../../AddSymbolTwo';
 import { event } from 'react-native-reanimated';
+import { useEffect } from 'react/cjs/react.development';
 
 //Creates full width styled component for JSX wrapping
 const FullWidth = styled.View`
@@ -28,8 +29,10 @@ position: absolute;
 bottom: 5%;
 `
 
-const StockScreen = ({ children, name }) => {
-
+const StockScreen = ({ children, name, route }) => {
+    useEffect(()=> {
+        console.log(route.params.equity)
+    }, [])
     var options = {
         method: 'GET',
         url: 'https://alpha-vantage.p.rapidapi.com/query',
