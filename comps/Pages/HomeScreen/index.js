@@ -117,7 +117,6 @@ const HomeScreen = ({ onSearchPress }) => {
 
     };
 
-<<<<<<< HEAD
     const getChart = async() => {
         console.log("pressed");
         axios.request(options)
@@ -143,16 +142,6 @@ const HomeScreen = ({ onSearchPress }) => {
                    setSec(sec+1);
                    //console.log(arr);
                    setChart(chart.concat(arr));
-=======
-    useEffect(() => {
-        axios.request(optionsTwo)
-            .then((response) => {
-                console.log(response.data.result);
-                setAllStocks(response.data.result)
-            })
-
-    }, [])
->>>>>>> 0b4eac3cf475d76b9db7c36ca60650b82f8d495e
 
 
             });
@@ -161,32 +150,7 @@ const HomeScreen = ({ onSearchPress }) => {
         //const seconds = Date.parse("2021-02-04T18:21:00")
         //console.log(seconds)
         //Running request on load of the page
-<<<<<<< HEAD
         
-=======
-        axios.request(options)
-            .then((response) => {
-                //    //console.log(response)
-                //    var arr = [];
-                //    for(var time in response.data["Time Series (1min)"]){
-                //        var obj = response.data["Time Series (1min)"][time]
-                //        //console.log(obj);
-                //     // const seconds = Date.parse(time.replace(" ", "T"));
-                //     let seconds = 1
-                //     //console.log(seconds);
-                //     arr.push({
-                //         y:seconds += 1,
-                //         // date:time,
-                //         x:obj["1. open"]
-                //     })
-                //    }
-                //    console.log(arr);
-
-                setData(response)
-
-
-            });
->>>>>>> 0b4eac3cf475d76b9db7c36ca60650b82f8d495e
 
     }, [])
 
