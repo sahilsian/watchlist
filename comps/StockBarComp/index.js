@@ -63,6 +63,13 @@ const TrashImg = styled.Image`
     display: ${props => props.containerState && props.selectedStock ? "flex" : "none"};
 `;
 
+const TrashView = styled.TouchableOpacity`
+position: absolute;
+right:24%;
+top:7%;
+z-index:9;
+`;
+
 
 const DropCont = styled.View`
     width:100%;
@@ -145,6 +152,9 @@ const StockBar = ({ onPress, status, name, username, stock, market, yields, low,
 
     return (
         <DataView contState={contState}>
+            <TrashView onPress={onPress}>
+                <TrashImg containerState={contState} selectedStock={stockState} resizeMode="contain" source={require('./TrashBin.png')} />
+            </TrashView>
             <Container>
                 <StockCont onPress={() => {
                     if (!contState) {
@@ -166,7 +176,7 @@ const StockBar = ({ onPress, status, name, username, stock, market, yields, low,
                         <ArrowImg containerState={contState} source={require('./Arrow.png')} />
                     </ArrowCirle>
                     <TitleText>{stock}</ TitleText>
-                    <TrashImg containerState={contState} selectedStock={stockState} resizeMode="contain" source={require('./TrashBin.png')} onPress={onPress} />
+                    {/* <TrashImg containerState={contState} selectedStock={stockState} resizeMode="contain" source={require('./TrashBin.png')} onPress={onPress} /> */}
 
 
                 </StockCont>
