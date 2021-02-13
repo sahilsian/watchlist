@@ -62,26 +62,16 @@ const HomeScreen = ({ onSearchPress }) => {
 
 
     const [data, setData] = useState([])
-<<<<<<< HEAD
     const [chart, setChart] = useState([
         { x: -0, y: 0 }
     ])
     const [rounded, setRounded] = useState([])
     const[sec, setSec] = useState(0)
-    const [miny, setMinY] = useState(null);
-=======
-    const [chart, setChart] = useState([{ x: -2, y: 15 },
-    { x: -1, y: 10 },
-    { x: 0, y: 12 },
-    { x: 5, y: 8 },
-    { x: 6, y: 12 },
-    { x: 7, y: 14 },
-    { x: 8, y: 12 },
-    { x: 9, y: 13.5 },
-    { x: 10, y: 18 }])
-    const [rounded, setRounded] = useState([]);
+    const [stateminy, setMinY] = useState(1);
+    const [statemaxy, setMaxY] = useState(10);
+    const [stateminx, setMinX] = useState(1);
+    const [statemaxx, setMaxX] = useState(10);
     const [allStocks, setAllStocks] = useState();
->>>>>>> 0b4eac3cf475d76b9db7c36ca60650b82f8d495e
 
 
     const deleteStock = () => {
@@ -102,7 +92,7 @@ const HomeScreen = ({ onSearchPress }) => {
         params: {
             interval: '1min',
             function: 'TIME_SERIES_INTRADAY',
-            symbol: 'AMC',
+            symbol: 'ZOM',
             datatype: 'json',
             output_size: 'compact'
         },
@@ -125,11 +115,11 @@ const HomeScreen = ({ onSearchPress }) => {
                    var arr = [];
                    for(var time in response.data["Time Series (1min)"]){
                        var obj = response.data["Time Series (1min)"][time]
-                       console.log(time);
+                       //console.log(time);
                     // const seconds = Date.parse(time.replace(" ", "T"));
                     const date = new Date(time.replace(" ", "T"));
-                    console.log(date.getHours(), date.getMinutes(), date.getHours()*60+date.getMinutes());
-                   
+                    //console.log(date.getHours(), date.getMinutes(), date.getHours()*60+date.getMinutes());
+                    
                     //console.log(seconds);
                     arr.push({
                         x:date.getHours()*60+date.getMinutes(),
@@ -137,6 +127,23 @@ const HomeScreen = ({ onSearchPress }) => {
                         y:obj["1. open"]*1
                     })
                    }
+
+                   let minyarr = arr.reduce((min, p) => p.y < min ? p.y : min, arr[0].y);
+                   console.log(minyarr)
+                   setMinY(minyarr )
+
+                   let maxyarr = arr.reduce((max, p) => p.y > max ? p.y : max, arr[0].y);
+                   console.log(maxyarr)
+                   setMaxY(maxyarr )
+
+                   let minxarr = arr.reduce((min, p) => p.x < min ? p.x : min, arr[0].x);
+                   console.log(minxarr)
+                   setMinX(minxarr)
+
+                   let maxxarr = arr.reduce((max, p) => p.x > max ? p.x : max, arr[0].x);
+                   console.log(maxxarr)
+                   setMaxX(maxxarr * 1)
+
 
                    //sort the array for the x value to count up before setChart
                    setSec(sec+1);
@@ -165,6 +172,10 @@ const HomeScreen = ({ onSearchPress }) => {
             <FullWidth contentContainerStyle={styles.contentContainer}>
                 <Graph
                     Data={chart}
+                    miny={stateminy}
+                    maxy={statemaxy}
+                    minx={stateminx}
+                    maxx={statemaxx}
                 >
 
                 </Graph>

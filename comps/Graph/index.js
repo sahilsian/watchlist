@@ -22,8 +22,8 @@ const Graph = ({ Data, minx, miny, maxx, maxy }) => {
                 style={{ height: 200, overflow: "visible", backgroundColor: '#fff' }}
                 data={Data}
 
-                xDomain={{ min: 619, max: 720 }}
-                yDomain={{ min: 5.5, max: 5.8 }}
+                xDomain={{ min: minx, max: maxx }}
+                yDomain={{ min: miny, max: maxy }}
 
             >
                 <VerticalAxis
@@ -59,12 +59,12 @@ const Graph = ({ Data, minx, miny, maxx, maxy }) => {
                     }}
 
                 />
-                <Area
+                {/* <Area
                     theme={{ gradient: { from: { color: '#3C4A60', opacity: 0.7 }, to: { color: '#ffffff', opacity: 1 } } }}
                     smoothing={'bezier'}
                     tension={0.05}
 
-                />
+                /> */}
 
                 <Line
                     theme={{ stroke: { color: '#3C4A60', width: 1.8 } }}
@@ -90,7 +90,11 @@ Graph.defaultProps={
         { x: 8, y: 12 },
         { x: 9, y: 13.5 },
         { x: 10, y: 18 }
-    ]
+    ],
+    minx: 1,
+    miny: 1,
+    maxx: 100,
+    maxy: 100,
 }
 
 export default Graph
