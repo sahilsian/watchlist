@@ -72,7 +72,8 @@ const Graph = ({ Data, minx, miny, maxx, maxy }) => {
                         position={{ x: 0, y: 20 }}
                     />}
                     smoothing={'bezier'}
-                    tension={0.05}
+                    tension={0}
+
                 />
             </Chart>
         </Container>
