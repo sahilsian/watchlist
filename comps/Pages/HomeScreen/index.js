@@ -58,42 +58,45 @@ height:100px;
 
 
 
+
+
 const HomeScreen = ({ onSearchPress }) => {
 
 
     const [data, setData] = useState([])
-<<<<<<< HEAD
     const [chart, setChart] = useState([
         { x: -0, y: 0 }
     ])
     const [rounded, setRounded] = useState([])
-    const[sec, setSec] = useState(0)
+    const [sec, setSec] = useState(0)
     const [miny, setMinY] = useState(null);
-=======
-    const [chart, setChart] = useState([{ x: -2, y: 15 },
-    { x: -1, y: 10 },
-    { x: 0, y: 12 },
-    { x: 5, y: 8 },
-    { x: 6, y: 12 },
-    { x: 7, y: 14 },
-    { x: 8, y: 12 },
-    { x: 9, y: 13.5 },
-    { x: 10, y: 18 }])
-    const [rounded, setRounded] = useState([]);
+
+
+    // const [chart, setChart] = useState([{ x: -2, y: 15 },
+    // { x: -1, y: 10 },
+    // { x: 0, y: 12 },
+    // { x: 5, y: 8 },
+    // { x: 6, y: 12 },
+    // { x: 7, y: 14 },
+    // { x: 8, y: 12 },
+    // { x: 9, y: 13.5 },
+    // { x: 10, y: 18 }])
+    // const [rounded, setRounded] = useState([]);
     const [allStocks, setAllStocks] = useState();
->>>>>>> 0b4eac3cf475d76b9db7c36ca60650b82f8d495e
 
 
     const deleteStock = () => {
         var options = {
             method: 'POST',
-            url: `http://localhost:8080/API/stocks//delete`,
+            url: `http://localhost:8080/API/stocks/TSLA/delete`,
         };
         axios.request(options)
             .then((response) => {
                 console.log(response);
             });
     }
+
+
 
 
     var options = {
@@ -117,42 +120,74 @@ const HomeScreen = ({ onSearchPress }) => {
 
     };
 
-    const getChart = async() => {
+
+    const getChart = async () => {
         console.log("pressed");
         axios.request(options)
             .then((response) => {
-                   //console.log(response)
-                   var arr = [];
-                   for(var time in response.data["Time Series (1min)"]){
-                       var obj = response.data["Time Series (1min)"][time]
-                       console.log(time);
+                //console.log(response)
+                var arr = [];
+                for (var time in response.data["Time Series (1min)"]) {
+                    var obj = response.data["Time Series (1min)"][time]
+                    console.log(time);
                     // const seconds = Date.parse(time.replace(" ", "T"));
                     const date = new Date(time.replace(" ", "T"));
-                    console.log(date.getHours(), date.getMinutes(), date.getHours()*60+date.getMinutes());
-                   
+                    console.log(date.getHours(), date.getMinutes(), date.getHours() * 60 + date.getMinutes());
+
                     //console.log(seconds);
                     arr.push({
-                        x:date.getHours()*60+date.getMinutes(),
+                        x: date.getHours() * 60 + date.getMinutes(),
                         // date:time,
-                        y:obj["1. open"]*1
+                        y: obj["1. open"] * 1
                     })
-                   }
+                }
 
-                   //sort the array for the x value to count up before setChart
-                   setSec(sec+1);
-                   //console.log(arr);
-                   setChart(chart.concat(arr));
+                //sort the array for the x value to count up before setChart
+                setSec(sec + 1);
+                //console.log(arr);
+                setChart(chart.concat(arr));
 
 
             });
     }
+
+    const [deleteStck, setDeleteStck] = useState("");
+
+
     useEffect(() => {
         //const seconds = Date.parse("2021-02-04T18:21:00")
         //console.log(seconds)
         //Running request on load of the page
-        
+        axios.request(optionsTwo)
+            .then((response) => {
+                // console.log(response)
+                setAllStocks(response.data.result)
+            });
+
+
 
     }, [])
+
+    useEffect(() => {
+        var optionsDelete = {
+            method: 'POST',
+            url: `http://localhost:8080/API/stocks/${deleteStck}/delete`,
+        };
+        axios.request(optionsDelete)
+            .then((response) => {
+                console.log(response);
+            });
+
+        //const seconds = Date.parse("2021-02-04T18:21:00")
+        //console.log(seconds)
+        //Running request on load of the page
+        axios.request(optionsTwo)
+            .then((response) => {
+                // console.log(response)
+                setAllStocks(response.data.result)
+            });
+
+    }, [deleteStck])
 
     const styles = StyleSheet.create({
         contentContainer: {
@@ -172,7 +207,7 @@ const HomeScreen = ({ onSearchPress }) => {
                 <StockBarDiv >
                     {allStocks !== undefined
                         ?
-                        allStocks.map(o => <StockBar
+                        allStocks.map(o => <StockBar onPress={() => setDeleteStck(o.stockname)}
                             stock={o.stockname}
                             // market={ }
                             // yields={ }
