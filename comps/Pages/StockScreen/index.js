@@ -26,7 +26,10 @@ const MidCont = styled.View`
 
 const BottomCont = styled.View`
 position: absolute;
-bottom: 5%;
+bottom: 12%;
+width:100%;
+height:0%;
+left:12px;
 `
 
 const StockScreen = ({ children, name }) => {
