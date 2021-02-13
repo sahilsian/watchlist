@@ -236,7 +236,6 @@ const HomeScreen = ({ onSearchPress }) => {
                         ?
                         allStocks.map(o => <StockBar onPress={() => { 
                             setDeleteStck(o.stockname)
-                            setOpenStock(o.stockname)
                         } }
                             stock={o.stockname}
                             // market={ }
@@ -245,6 +244,12 @@ const HomeScreen = ({ onSearchPress }) => {
                             // high={ }
                             // saved={ }
                             status={o.open}
+                            onPressTwo={() => {
+                                setOpenStock(o)
+                                console.log(openStock)
+                            }}
+                            contState={contState}
+                            stockState={stockState}
                         />
                         )
                         :
