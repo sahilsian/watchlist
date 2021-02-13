@@ -6,6 +6,7 @@ import StockBar from '../../StockBarComp'
 import TimeSelector from '../../TimeSelector'
 import AddSymbol from '../../AddSymbol'
 import { set } from 'react-native-reanimated'
+import { useNavigation } from '@react-navigation/native';
 
 
 //Importing Axios for HTTP
@@ -61,7 +62,10 @@ height:100px;
 
 
 const HomeScreen = ({ onSearchPress }) => {
-
+    const navigation = useNavigation();
+    const FakeDB = [
+        "TSLA", "ZOM", "TLRY", "MSFT", "AAPL"
+    ]
 
     const [data, setData] = useState([])
     const [chart, setChart] = useState([
@@ -74,6 +78,9 @@ const HomeScreen = ({ onSearchPress }) => {
     const [stateminx, setMinX] = useState(1);
     const [statemaxx, setMaxX] = useState(10);
     const [allStocks, setAllStocks] = useState();
+    const [openStock, setOpenStock] = useState('ZOM');
+    const [contState, setState] = useState();
+    const [stockState, setStockState] = useState(false);
 
 
     const deleteStock = () => {
@@ -87,40 +94,50 @@ const HomeScreen = ({ onSearchPress }) => {
             });
     }
 
+    
+    
+    useEffect(() => {
+        console.log(openStock)
+    }, [openStock])
 
 
-
-    var options = {
-        method: 'GET',
-        url: 'https://alpha-vantage.p.rapidapi.com/query',
-        params: {
-            interval: '1min',
-            function: 'TIME_SERIES_INTRADAY',
-            symbol: 'TSLA',
-            datatype: 'json',
-            output_size: 'compact'
-        },
-        headers: {
-            'x-rapidapi-key': '0fafa20f3emsh32dcdb583b700cbp1985e7jsnfe5f976d3c08',
-            'x-rapidapi-host': 'alpha-vantage.p.rapidapi.com'
-        }
-    };
     var optionsTwo = {
         method: 'GET',
-        url: 'http://localhost:8080/API/stocks/',
+        url: 'http://localhost:8080/api/stocks/',
 
     };
 
 
-    const getChart = async () => {
+    useEffect(() => {
+
+
+        var options = {
+            method: 'GET',
+            url: 'https://alpha-vantage.p.rapidapi.com/query',
+            params: {
+                interval: '1min',
+                function: 'TIME_SERIES_INTRADAY',
+                symbol: openStock,
+                datatype: 'json',
+                output_size: 'compact'
+            },
+            headers: {
+                'x-rapidapi-key': '0fafa20f3emsh32dcdb583b700cbp1985e7jsnfe5f976d3c08',
+                'x-rapidapi-host': 'alpha-vantage.p.rapidapi.com'
+            }
+        };
+
+
         console.log("pressed");
         axios.request(options)
             .then((response) => {
-                //console.log(response)
-                var arr = [];
-                for (var time in response.data["Time Series (1min)"]) {
-                    var obj = response.data["Time Series (1min)"][time]
-                    //console.log(time);
+
+                    //console.log(response)
+                    var arr = [];
+                    for(var time in response.data["Time Series (1min)"]){
+                        var obj = response.data["Time Series (1min)"][time]
+                        //console.log(time);
+
                     // const seconds = Date.parse(time.replace(" ", "T"));
                     const date = new Date(time.replace(" ", "T"));
                     //console.log(date.getHours(), date.getMinutes(), date.getHours()*60+date.getMinutes());
@@ -133,31 +150,33 @@ const HomeScreen = ({ onSearchPress }) => {
                     })
                 }
 
-                let minyarr = arr.reduce((min, p) => p.y < min ? p.y : min, arr[0].y);
-                console.log(minyarr)
-                setMinY(minyarr)
 
-                let maxyarr = arr.reduce((max, p) => p.y > max ? p.y : max, arr[0].y);
-                console.log(maxyarr)
-                setMaxY(maxyarr)
+                    let minyarr = arr.reduce((min, p) => p.y < min ? p.y : min, arr[0].y);
+                    console.log(minyarr)
+                    setMinY(minyarr )
 
-                let minxarr = arr.reduce((min, p) => p.x < min ? p.x : min, arr[0].x);
-                console.log(minxarr)
-                setMinX(minxarr)
+                    let maxyarr = arr.reduce((max, p) => p.y > max ? p.y : max, arr[0].y);
+                    console.log(maxyarr)
+                    setMaxY(maxyarr )
 
-                let maxxarr = arr.reduce((max, p) => p.x > max ? p.x : max, arr[0].x);
-                console.log(maxxarr)
-                setMaxX(maxxarr * 1)
+                    let minxarr = arr.reduce((min, p) => p.x < min ? p.x : min, arr[0].x);
+                    console.log(minxarr)
+                    setMinX(minxarr)
+
+                    let maxxarr = arr.reduce((max, p) => p.x > max ? p.x : max, arr[0].x);
+                    console.log(maxxarr)
+                    setMaxX(maxxarr * 1)
 
 
-                //sort the array for the x value to count up before setChart
-                setSec(sec + 1);
-                //console.log(arr);
-                setChart(chart.concat(arr));
+                    //sort the array for the x value to count up before setChart
+                    setSec(sec+1);
+                    //console.log(arr);
+                    setChart(chart.concat(arr));
+
 
 
             });
-    }
+    }, [openStock])
 
     const [deleteStck, setDeleteStck] = useState("");
 
@@ -219,7 +238,10 @@ const HomeScreen = ({ onSearchPress }) => {
                 <StockBarDiv >
                     {allStocks !== undefined
                         ?
-                        allStocks.map(o => <StockBar onPress={() => setDeleteStck(o.stockname)}
+                        allStocks.map(o => <StockBar onPress={() => { 
+                            setDeleteStck(o.stockname)
+                            setOpenStock(o.stockname)
+                        } }
                             stock={o.stockname}
                             // market={ }
                             // yields={ }
@@ -230,13 +252,30 @@ const HomeScreen = ({ onSearchPress }) => {
                         />
                         )
                         :
-                        <StockBar />
+                        FakeDB.map((o) => {
+                            return (
+                            <StockBar stock={o} onPress={() => { 
+                                setDeleteStck(o)
+                                
+                            }}
+                            onPressTwo={() => {
+                                setOpenStock(o)
+                                console.log(openStock)
+                            }}
+                            contState={contState}
+                            stockState={stockState}
+                            />
+                                
+                            )
+                        })
                     }
 
                     <BottomPadding />
                 </StockBarDiv >
                 <BottomCont>
-                    <AddSymbol onPress={getChart} />
+                    <AddSymbol onPress={()=> {
+                        navigation.navigate('Search')
+                    }} />
                 </BottomCont>
             </FullWidth>
         </Wrap>
