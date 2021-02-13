@@ -72,7 +72,7 @@ const HomeScreen = ({ onSearchPress }) => {
         { x: -0, y: 0 }
     ])
     const [rounded, setRounded] = useState([])
-    const[sec, setSec] = useState(0)
+    const [sec, setSec] = useState(0)
     const [stateminy, setMinY] = useState(1);
     const [statemaxy, setMaxY] = useState(10);
     const [stateminx, setMinX] = useState(1);
@@ -100,7 +100,7 @@ const HomeScreen = ({ onSearchPress }) => {
         console.log(openStock)
     }, [openStock])
 
-    
+
     var optionsTwo = {
         method: 'GET',
         url: 'http://localhost:8080/api/stocks/',
@@ -131,15 +131,17 @@ const HomeScreen = ({ onSearchPress }) => {
         console.log("pressed");
         axios.request(options)
             .then((response) => {
+
                     //console.log(response)
                     var arr = [];
                     for(var time in response.data["Time Series (1min)"]){
                         var obj = response.data["Time Series (1min)"][time]
                         //console.log(time);
+
                     // const seconds = Date.parse(time.replace(" ", "T"));
                     const date = new Date(time.replace(" ", "T"));
                     //console.log(date.getHours(), date.getMinutes(), date.getHours()*60+date.getMinutes());
-                    
+
                     //console.log(seconds);
                     arr.push({
                         x: date.getHours() * 60 + date.getMinutes(),
@@ -147,6 +149,7 @@ const HomeScreen = ({ onSearchPress }) => {
                         y: obj["1. open"] * 1
                     })
                 }
+
 
                     let minyarr = arr.reduce((min, p) => p.y < min ? p.y : min, arr[0].y);
                     console.log(minyarr)
@@ -169,6 +172,7 @@ const HomeScreen = ({ onSearchPress }) => {
                     setSec(sec+1);
                     //console.log(arr);
                     setChart(chart.concat(arr));
+
 
 
             });

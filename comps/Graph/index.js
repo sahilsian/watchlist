@@ -19,7 +19,7 @@ const Graph = ({ Data, minx, miny, maxx, maxy }) => {
     return (
         <Container>
             <Chart
-                style={{ height: 200, overflow: "visible", backgroundColor: '#fff' }}
+                style={{ height: 200, overflow: "hidden", backgroundColor: '#fff' }}
                 data={Data}
 
                 xDomain={{ min: minx, max: maxx }}
@@ -59,12 +59,12 @@ const Graph = ({ Data, minx, miny, maxx, maxy }) => {
                     }}
 
                 />
-                {/* <Area
+                <Area
                     theme={{ gradient: { from: { color: '#3C4A60', opacity: 0.7 }, to: { color: '#ffffff', opacity: 1 } } }}
                     smoothing={'bezier'}
-                    tension={0.05}
+                    tension={0}
 
-                /> */}
+                />
 
                 <Line
                     theme={{ stroke: { color: '#3C4A60', width: 1.8 } }}
@@ -79,9 +79,9 @@ const Graph = ({ Data, minx, miny, maxx, maxy }) => {
     )
 }
 
-Graph.defaultProps={
-    Data:[
-       { x: -2, y: 15 },
+Graph.defaultProps = {
+    Data: [
+        { x: -2, y: 15 },
         { x: -1, y: 10 },
         { x: 0, y: 12 },
         { x: 5, y: 8 },
