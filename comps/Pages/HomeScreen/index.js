@@ -68,7 +68,7 @@ const HomeScreen = ({ onSearchPress }) => {
         { x: -0, y: 0 }
     ])
     const [rounded, setRounded] = useState([])
-    const[sec, setSec] = useState(0)
+    const [sec, setSec] = useState(0)
     const [stateminy, setMinY] = useState(1);
     const [statemaxy, setMaxY] = useState(10);
     const [stateminx, setMinX] = useState(1);
@@ -96,7 +96,7 @@ const HomeScreen = ({ onSearchPress }) => {
         params: {
             interval: '1min',
             function: 'TIME_SERIES_INTRADAY',
-            symbol: 'ZOM',
+            symbol: 'TSLA',
             datatype: 'json',
             output_size: 'compact'
         },
@@ -116,15 +116,15 @@ const HomeScreen = ({ onSearchPress }) => {
         console.log("pressed");
         axios.request(options)
             .then((response) => {
-                   //console.log(response)
-                   var arr = [];
-                   for(var time in response.data["Time Series (1min)"]){
-                       var obj = response.data["Time Series (1min)"][time]
-                       //console.log(time);
+                //console.log(response)
+                var arr = [];
+                for (var time in response.data["Time Series (1min)"]) {
+                    var obj = response.data["Time Series (1min)"][time]
+                    //console.log(time);
                     // const seconds = Date.parse(time.replace(" ", "T"));
                     const date = new Date(time.replace(" ", "T"));
                     //console.log(date.getHours(), date.getMinutes(), date.getHours()*60+date.getMinutes());
-                    
+
                     //console.log(seconds);
                     arr.push({
                         x: date.getHours() * 60 + date.getMinutes(),
@@ -133,27 +133,27 @@ const HomeScreen = ({ onSearchPress }) => {
                     })
                 }
 
-                   let minyarr = arr.reduce((min, p) => p.y < min ? p.y : min, arr[0].y);
-                   console.log(minyarr)
-                   setMinY(minyarr )
+                let minyarr = arr.reduce((min, p) => p.y < min ? p.y : min, arr[0].y);
+                console.log(minyarr)
+                setMinY(minyarr)
 
-                   let maxyarr = arr.reduce((max, p) => p.y > max ? p.y : max, arr[0].y);
-                   console.log(maxyarr)
-                   setMaxY(maxyarr )
+                let maxyarr = arr.reduce((max, p) => p.y > max ? p.y : max, arr[0].y);
+                console.log(maxyarr)
+                setMaxY(maxyarr)
 
-                   let minxarr = arr.reduce((min, p) => p.x < min ? p.x : min, arr[0].x);
-                   console.log(minxarr)
-                   setMinX(minxarr)
+                let minxarr = arr.reduce((min, p) => p.x < min ? p.x : min, arr[0].x);
+                console.log(minxarr)
+                setMinX(minxarr)
 
-                   let maxxarr = arr.reduce((max, p) => p.x > max ? p.x : max, arr[0].x);
-                   console.log(maxxarr)
-                   setMaxX(maxxarr * 1)
+                let maxxarr = arr.reduce((max, p) => p.x > max ? p.x : max, arr[0].x);
+                console.log(maxxarr)
+                setMaxX(maxxarr * 1)
 
 
-                   //sort the array for the x value to count up before setChart
-                   setSec(sec+1);
-                   //console.log(arr);
-                   setChart(chart.concat(arr));
+                //sort the array for the x value to count up before setChart
+                setSec(sec + 1);
+                //console.log(arr);
+                setChart(chart.concat(arr));
 
 
             });
