@@ -58,6 +58,8 @@ height:100px;
 
 
 
+
+
 const HomeScreen = ({ onSearchPress }) => {
 
 
@@ -66,24 +68,43 @@ const HomeScreen = ({ onSearchPress }) => {
         { x: -0, y: 0 }
     ])
     const [rounded, setRounded] = useState([])
+<<<<<<< HEAD
     const[sec, setSec] = useState(0)
     const [stateminy, setMinY] = useState(1);
     const [statemaxy, setMaxY] = useState(10);
     const [stateminx, setMinX] = useState(1);
     const [statemaxx, setMaxX] = useState(10);
+=======
+    const [sec, setSec] = useState(0)
+    const [miny, setMinY] = useState(null);
+
+
+    // const [chart, setChart] = useState([{ x: -2, y: 15 },
+    // { x: -1, y: 10 },
+    // { x: 0, y: 12 },
+    // { x: 5, y: 8 },
+    // { x: 6, y: 12 },
+    // { x: 7, y: 14 },
+    // { x: 8, y: 12 },
+    // { x: 9, y: 13.5 },
+    // { x: 10, y: 18 }])
+    // const [rounded, setRounded] = useState([]);
+>>>>>>> 50c60a219cbc6a48bfb78c684085ac43a309d80c
     const [allStocks, setAllStocks] = useState();
 
 
     const deleteStock = () => {
         var options = {
             method: 'POST',
-            url: `http://localhost:8080/API/stocks//delete`,
+            url: `http://localhost:8080/API/stocks/TSLA/delete`,
         };
         axios.request(options)
             .then((response) => {
                 console.log(response);
             });
     }
+
+
 
 
     var options = {
@@ -107,7 +128,8 @@ const HomeScreen = ({ onSearchPress }) => {
 
     };
 
-    const getChart = async() => {
+
+    const getChart = async () => {
         console.log("pressed");
         axios.request(options)
             .then((response) => {
@@ -122,11 +144,11 @@ const HomeScreen = ({ onSearchPress }) => {
                     
                     //console.log(seconds);
                     arr.push({
-                        x:date.getHours()*60+date.getMinutes(),
+                        x: date.getHours() * 60 + date.getMinutes(),
                         // date:time,
-                        y:obj["1. open"]*1
+                        y: obj["1. open"] * 1
                     })
-                   }
+                }
 
                    let minyarr = arr.reduce((min, p) => p.y < min ? p.y : min, arr[0].y);
                    console.log(minyarr)
@@ -153,13 +175,44 @@ const HomeScreen = ({ onSearchPress }) => {
 
             });
     }
+
+    const [deleteStck, setDeleteStck] = useState("");
+
+
     useEffect(() => {
         //const seconds = Date.parse("2021-02-04T18:21:00")
         //console.log(seconds)
         //Running request on load of the page
-        
+        axios.request(optionsTwo)
+            .then((response) => {
+                // console.log(response)
+                setAllStocks(response.data.result)
+            });
+
+
 
     }, [])
+
+    useEffect(() => {
+        var optionsDelete = {
+            method: 'POST',
+            url: `http://localhost:8080/API/stocks/${deleteStck}/delete`,
+        };
+        axios.request(optionsDelete)
+            .then((response) => {
+                console.log(response);
+            });
+
+        //const seconds = Date.parse("2021-02-04T18:21:00")
+        //console.log(seconds)
+        //Running request on load of the page
+        axios.request(optionsTwo)
+            .then((response) => {
+                // console.log(response)
+                setAllStocks(response.data.result)
+            });
+
+    }, [deleteStck])
 
     const styles = StyleSheet.create({
         contentContainer: {
@@ -183,7 +236,7 @@ const HomeScreen = ({ onSearchPress }) => {
                 <StockBarDiv >
                     {allStocks !== undefined
                         ?
-                        allStocks.map(o => <StockBar
+                        allStocks.map(o => <StockBar onPress={() => setDeleteStck(o.stockname)}
                             stock={o.stockname}
                             // market={ }
                             // yields={ }

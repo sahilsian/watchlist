@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { View } from 'react-native';
 import styled from 'styled-components/native';
@@ -37,6 +38,18 @@ const data = [
 
 const AddStockScreen = ({ }) => {
 
+    const [addStck, setAddStck] = useState("");
+
+    useEffect(() => {
+        var optionAdd = {
+            method: 'POST',
+            url: `http://localhost:8080/API/stocks/${addStck}/add`,
+        };
+        axios.request(optionAdd)
+            .then((response) => {
+                console.log(response.data.result)
+            });
+    }, [addStck])
 
     return (
         <FullWidth>
@@ -44,7 +57,7 @@ const AddStockScreen = ({ }) => {
                 <Graph Data={data} />
             </GCont>
             <StockBar status={true} contState={false} />
-            <AddSymbol />
+            <AddSymbol onPress={() => setAddStck(o.stockname)} />
         </FullWidth >
     )
 }
