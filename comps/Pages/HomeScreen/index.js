@@ -94,8 +94,8 @@ const HomeScreen = ({ onSearchPress }) => {
             });
     }
 
-    
-    
+
+
     useEffect(() => {
         console.log(openStock)
     }, [openStock])
@@ -122,21 +122,21 @@ const HomeScreen = ({ onSearchPress }) => {
                 output_size: 'compact'
             },
             headers: {
-                'x-rapidapi-key': '0fafa20f3emsh32dcdb583b700cbp1985e7jsnfe5f976d3c08',
+                'x-rapidapi-key': '44d333d212mshd6e686f04a78658p15aadajsna5e2a79fcfda',
                 'x-rapidapi-host': 'alpha-vantage.p.rapidapi.com'
             }
-        };
 
+        };
 
         console.log("pressed");
         axios.request(options)
             .then((response) => {
 
-                    //console.log(response)
-                    var arr = [];
-                    for(var time in response.data["Time Series (1min)"]){
-                        var obj = response.data["Time Series (1min)"][time]
-                        //console.log(time);
+                //console.log(response)
+                var arr = [];
+                for (var time in response.data["Time Series (1min)"]) {
+                    var obj = response.data["Time Series (1min)"][time]
+                    //console.log(time);
 
                     // const seconds = Date.parse(time.replace(" ", "T"));
                     const date = new Date(time.replace(" ", "T"));
@@ -151,27 +151,27 @@ const HomeScreen = ({ onSearchPress }) => {
                 }
 
 
-                    let minyarr = arr.reduce((min, p) => p.y < min ? p.y : min, arr[0].y);
-                    console.log(minyarr)
-                    setMinY(minyarr )
+                let minyarr = arr.reduce((min, p) => p.y < min ? p.y : min, arr[0].y);
+                console.log(minyarr)
+                setMinY(minyarr)
 
-                    let maxyarr = arr.reduce((max, p) => p.y > max ? p.y : max, arr[0].y);
-                    console.log(maxyarr)
-                    setMaxY(maxyarr )
+                let maxyarr = arr.reduce((max, p) => p.y > max ? p.y : max, arr[0].y);
+                console.log(maxyarr)
+                setMaxY(maxyarr)
 
-                    let minxarr = arr.reduce((min, p) => p.x < min ? p.x : min, arr[0].x);
-                    console.log(minxarr)
-                    setMinX(minxarr)
+                let minxarr = arr.reduce((min, p) => p.x < min ? p.x : min, arr[0].x);
+                console.log(minxarr)
+                setMinX(minxarr)
 
-                    let maxxarr = arr.reduce((max, p) => p.x > max ? p.x : max, arr[0].x);
-                    console.log(maxxarr)
-                    setMaxX(maxxarr * 1)
+                let maxxarr = arr.reduce((max, p) => p.x > max ? p.x : max, arr[0].x);
+                console.log(maxxarr)
+                setMaxX(maxxarr * 1)
 
 
-                    //sort the array for the x value to count up before setChart
-                    setSec(sec+1);
-                    //console.log(arr);
-                    setChart(chart.concat(arr));
+                //sort the array for the x value to count up before setChart
+                setSec(sec + 1);
+                //console.log(arr);
+                setChart(chart.concat(arr));
 
 
 
@@ -238,9 +238,9 @@ const HomeScreen = ({ onSearchPress }) => {
                 <StockBarDiv >
                     {allStocks !== undefined
                         ?
-                        allStocks.map(o => <StockBar onPress={() => { 
+                        allStocks.map(o => <StockBar onPress={() => {
                             setDeleteStck(o.stockname)
-                        } }
+                        }}
                             stock={o.stockname}
                             // market={ }
                             // yields={ }
@@ -249,7 +249,7 @@ const HomeScreen = ({ onSearchPress }) => {
                             // saved={ }
                             status={o.open}
                             onPressTwo={() => {
-                                setOpenStock(o)
+                                setOpenStock(o.stockname)
                                 console.log(openStock)
                             }}
                             contState={contState}
@@ -259,18 +259,18 @@ const HomeScreen = ({ onSearchPress }) => {
                         :
                         FakeDB.map((o) => {
                             return (
-                            <StockBar stock={o} onPress={() => { 
-                                setDeleteStck(o)
-                                
-                            }}
-                            onPressTwo={() => {
-                                setOpenStock(o)
-                                console.log(openStock)
-                            }}
-                            contState={contState}
-                            stockState={stockState}
-                            />
-                                
+                                <StockBar stock={o} onPress={() => {
+                                    setDeleteStck(o)
+
+                                }}
+                                    onPressTwo={() => {
+                                        setOpenStock(o)
+                                        console.log(openStock)
+                                    }}
+                                    contState={contState}
+                                    stockState={stockState}
+                                />
+
                             )
                         })
                     }
@@ -278,7 +278,7 @@ const HomeScreen = ({ onSearchPress }) => {
                     <BottomPadding />
                 </StockBarDiv >
                 <BottomCont>
-                    <AddSymbol onPress={()=> {
+                    <AddSymbol onPress={() => {
                         navigation.navigate('Search')
                     }} />
                 </BottomCont>
@@ -288,3 +288,4 @@ const HomeScreen = ({ onSearchPress }) => {
 }
 
 export default HomeScreen
+
