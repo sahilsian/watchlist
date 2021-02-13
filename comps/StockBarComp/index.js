@@ -123,7 +123,7 @@ margin-bottom: 15px;
 
 
 
-const StockBar = ({ onPress, status, name, username, stock, market, yields, low, high, saved }) => {
+const StockBar = ({ onPressTwo, onPress, status, name, username, stock, market, yields, low, high, saved }) => {
     // This represents if the menu is open or closed
     const [contState, setState] = useState(status);
     // This represents if the stock is on the watch list or not
@@ -169,6 +169,8 @@ const StockBar = ({ onPress, status, name, username, stock, market, yields, low,
                         setStockState(true);
                         // console.log("stockData.saved is " + o.saved);
                     }
+
+                    onPressTwo()
                 }}
 
                 >
