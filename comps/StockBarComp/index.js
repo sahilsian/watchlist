@@ -134,9 +134,10 @@ const StockBar = ({ onPressTwo, onPress, status, name, username, stock, market, 
         url: 'https://alpha-vantage.p.rapidapi.com/query',
         params: { function: 'GLOBAL_QUOTE', symbol: `GME`, datatype: 'json' },
         headers: {
-            'x-rapidapi-key': '0fafa20f3emsh32dcdb583b700cbp1985e7jsnfe5f976d3c08',
+            'x-rapidapi-key': '44d333d212mshd6e686f04a78658p15aadajsna5e2a79fcfda',
             'x-rapidapi-host': 'alpha-vantage.p.rapidapi.com'
         }
+
     };
 
     // axios.request(options).then(function (response) {
